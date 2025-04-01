@@ -23,7 +23,13 @@ public class Ball {
 			randomYDirection--;
 		setYDirection(randomYDirection*initialSpeed);
 		
-		
+		public void setXDirection(int randomXDirection) {
+			xVelocity = randomXDirection;
+		}
+		public void setYDirection(int randomYDirection) {
+			yVelocity = randomYDirection;
+		}
+
 	}
 	
 }
