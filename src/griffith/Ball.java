@@ -3,7 +3,7 @@ package griffith;
 import java.awt.*;
 import java.util.*;
 
-public class Ball {
+public class Ball extends Rectangle{
 	
 	Random random;
 	int xVelocity;
@@ -23,14 +23,15 @@ public class Ball {
 			randomYDirection--;
 		setYDirection(randomYDirection*initialSpeed);
 		
-		public void setXDirection(int randomXDirection) {
-			xVelocity = randomXDirection;
-		}
-		public void setYDirection(int randomYDirection) {
-			yVelocity = randomYDirection;
-		}
-
+		
 	}
 	
+	public void setXDirection(int randomXDirection) {
+		xVelocity = randomXDirection;
+	}
+	public void setYDirection(int randomYDirection) {
+		yVelocity = randomYDirection;
+	}
+
 }
 
