@@ -8,5 +8,11 @@ public class Score {
 	int player_1;
 	int player_2;
 	
-
+	Score(int GAME_WIDTH, int GAME_HEIGHT){
+		
+		Score.GAME_HEIGHT = GAME_HEIGHT;
+		Score.GAME_WIDTH = GAME_WIDTH;
+		
+	}
+	
 }
