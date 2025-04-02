@@ -14,6 +14,19 @@ public abstract class GamePanel extends JPanel implements Runnable{
 	
 	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);
 
+	static final int BALL_DIAMETER = 20;
+
+	static final int PADDLE_WIDTH = 25;
+
+	static final int PADDLE_HEIGHT = 10;0
+
+	Thread gameThread;
+
+	Image image;
+
+	Graphics graphics;
+
+	Random random;
 
 }
 
