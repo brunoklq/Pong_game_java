@@ -18,7 +18,7 @@ public abstract class GamePanel extends JPanel implements Runnable{
 
 	static final int PADDLE_WIDTH = 25;
 
-	static final int PADDLE_HEIGHT = 10;0
+	static final int PADDLE_HEIGHT = 100;
 
 	Thread gameThread;
 
