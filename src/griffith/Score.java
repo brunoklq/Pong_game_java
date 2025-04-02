@@ -1,5 +1,7 @@
 package griffith;
 
+import java.awt.*;
+
 public class Score {
 	
 	
@@ -15,4 +17,9 @@ public class Score {
 		
 	}
 	
+	public void draw(Graphics g) {
+		
+		g.setColor(Color.white);
+		
+	}
 }
