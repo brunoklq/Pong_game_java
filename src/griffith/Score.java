@@ -20,6 +20,7 @@ public class Score {
 	public void draw(Graphics g) {
 		
 		g.setColor(Color.white);
+		g.setFont(new Font("Consolas", Font.PLAIN, 60));
 		
 	}
 }
