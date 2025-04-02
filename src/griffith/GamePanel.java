@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 
-public class GamePanel extends JPanel implements Runnable{
+public abstract class GamePanel extends JPanel implements Runnable{
 
 
 
