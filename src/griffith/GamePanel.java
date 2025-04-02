@@ -28,6 +28,21 @@ public abstract class GamePanel extends JPanel implements Runnable{
 
 	Random random;
 
-}
+	}
+
+			GamePanel(){
+			
+				
+			
+				this.setPreferredSize(SCREEN_SIZE);
+			
+				
+			
+				gameThread = new Thread(this);
+			
+				gameThread.start();
+			
+			}
+				}
 
 
