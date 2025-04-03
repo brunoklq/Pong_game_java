@@ -1,5 +1,7 @@
 package griffith;
 
+import java.awt.event.KeyEvent;
+
 public class Paddle extends Rectangle {
 	
 	int id;
@@ -14,7 +16,9 @@ public class Paddle extends Rectangle {
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		
+		if(id == 1 && e.getKeyCode() == KeyEvent.VK_W) {
+			setYDirection(-speed);
+		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
