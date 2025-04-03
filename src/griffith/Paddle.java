@@ -7,6 +7,8 @@ import com.sun.prism.paint.Color;
 
 public class Paddle extends Rectangle {
 	
+	public static final int PADDLE_WIDTH = 25;
+	public static final int PADDLE_HEIGHT = 100;
 	int id;
 	int yVelocity;
 	int speed = 10;
@@ -48,7 +50,9 @@ public class Paddle extends Rectangle {
 		yVelocity = yDirection;
 	}
 	public void move() {
-		y += yVelocity;
+	    y += yVelocity;
+	    if(y <= 0) y = 0;
+		if(y >= GamePanel.GAME_HEIGHT - height) y = GamePanel.GAME_HEIGHT - height;
 	}
 	public void drawn(Graphics g) {
 		if (id == 1) g.setColor(Color.BLUE);

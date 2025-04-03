@@ -1,12 +1,16 @@
 package griffith;
 
 import java.awt.*;
+
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
 
 public abstract class GamePanel extends JPanel implements Runnable{
+	
+	Paddle paddle1;
+	Paddle paddle2;
 	
 	static final int GAME_WIDTH = 1000;
 
@@ -35,6 +39,11 @@ public abstract class GamePanel extends JPanel implements Runnable{
 				
 			
 				this.setPreferredSize(SCREEN_SIZE);
+				
+				random = new Random();
+
+				paddle1 = new Paddle(0, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+				paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
 			
 				
 			
