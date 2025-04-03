@@ -1,17 +1,5 @@
 package griffith;
 
-public class GameFrame {
-
-	
-	
-	
-}
-
-
-
-
-/*
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -31,5 +19,3 @@ public class GameFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 	}
 }
-
-*/
