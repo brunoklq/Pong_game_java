@@ -2,6 +2,9 @@ package griffith;
 
 import java.awt.event.KeyEvent;
 
+import com.sun.prism.Graphics;
+import com.sun.prism.paint.Color;
+
 public class Paddle extends Rectangle {
 	
 	int id;
@@ -48,6 +51,9 @@ public class Paddle extends Rectangle {
 		y += yVelocity;
 	}
 	public void drawn(Graphics g) {
+		if (id == 1) g.setColor(Color.BLUE);
+		else g set.Color(Color.RED);
 		
+		g.fillRect(x, y, width, height);
 	}
 }
