@@ -8,6 +8,7 @@ public class GameFrame extends JFrame{
 	GamePanel panel;
 	
 	GameFrame(){
+		
 		panel = new GamePanel();
 		this.add(panel);
 		this.setTitle("Pong Game");
