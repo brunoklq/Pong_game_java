@@ -37,6 +37,7 @@ public abstract class GamePanel extends JPanel implements Runnable {
 				GamePanel(){
 			
 				newPaddles();
+				newBall();
 				score = new Score(GAME_WIDTH,GAME_HEIGHT);
 				
 				this.setFocusable(true);
@@ -50,6 +51,13 @@ public abstract class GamePanel extends JPanel implements Runnable {
 			
 				gameThread.start();
 			
+			}
+				
+			public void newBall() {
+				
+				random = new Random();
+				ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER,BALL_DIAMETER);
+				
 			}
 			public void newPaddles() {
 				paddle1 = new Paddle(0, (GAME_HEIGHT - PADDLE_HEIGHT) / 2, PADDLE_WIDTH, PADDLE_HEIGHT, 1);
