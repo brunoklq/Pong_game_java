@@ -2,8 +2,17 @@ package griffith;
 
 public class Paddle extends Rectangle {
 	
-	Paddle() {
-		
+	int x;
+	int y;
+	int width;
+	int height;
+	
+	//Initialize values
+	Paddle(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 	
 	public void keyPressed(KeyEvent e) {
