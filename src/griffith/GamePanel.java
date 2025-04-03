@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 
-public  class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable {
 
 	static final int GAME_WIDTH = 1000;
 
@@ -60,8 +60,8 @@ public  class GamePanel extends JPanel implements Runnable {
 
 	}
 	public void newPaddles() {
-		paddle1 = new Paddle(0, (GAME_HEIGHT - PADDLE_HEIGHT) / 2, PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-		paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT - PADDLE_HEIGHT) / 2, PADDLE_WIDTH, PADDLE_HEIGHT, 2);
+		paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 	}
 	public void draw(Graphics g) {
 		paddle1.draw(g);
@@ -137,6 +137,27 @@ public void checkCollision() {
 		paddle2.move();
 		ball.move();
 	}
+	
+	public void run() {
+		long lastime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000/ amountOfTicks;
+		double delta = 0;
+		while(true) {
+			
+			long now = System.nanoTime();
+			delta += ( now - lastime)/ns;
+			lastime = now;
+			if(delta >=1);{
+				
+				move();
+				checkCollision();
+				repaint();
+				delta--;
+			}
+			
+		}
+	}
 	public class AL extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
@@ -148,31 +169,10 @@ public void checkCollision() {
 			paddle2.keyReleased(e);
 		}
 		
-		
-		public void run() {
-			long lastime = System.nanoTime();
-			double amountOfTicks = 60.0;
-			double ns = 1000000000/ amountOfTicks;
-			double delta = 0;
-			while(true) {
-				
-				long now = System.nanoTime();
-				delta += ( now - lastime)/ns;
-				lastime = now;
-				if(delta >=1);{
-					
-					move();
-					checkCollision();
-					repaint();
-					delta--;
-				}
-				
-			}
-		}
+	
+	
 	}
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
+	
 }
