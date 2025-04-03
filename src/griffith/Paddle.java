@@ -42,14 +42,16 @@ public class Paddle extends Rectangle {
         switch (id) {
             case 1:
                 if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S) {
-                    setYDirection(0);
+                    setYDirection(-10);
+                    move();
                 }
                 break;
             case 2:
                 if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    setYDirection(0);
+                    setYDirection(-10);
+                    move();
                 }
-                break;
+                break; // need to change the paddle and run this properly!
         }
     }
     //Direction of movement
