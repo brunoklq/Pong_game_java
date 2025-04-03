@@ -1,5 +1,26 @@
 package griffith;
 
-public class Paddle {
-
+public class Paddle extends Rectangle {
+	
+	Paddle() {
+		
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		
+	}
+	
+	public void setYDirection(int yDirection) {
+		
+	}
+	public void move() {
+		
+	}
+	public void drawn(Graphics g) {
+		
+	}
 }
