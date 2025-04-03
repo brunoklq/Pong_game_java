@@ -66,6 +66,18 @@ public abstract class GamePanel extends JPanel implements Runnable {
 			public void draw(Graphics g) {
 				paddle1.draw(g);
 				paddle2.draw(g);
+				ball.draw(g);
+				score.draw(g);
+				Toolkit.getDefaultToolkit().sync();
+			}
+			public void paint(Graphics g) {
+				
+				image = createImage(getWidth(),getHeight());
+				graphics = image.getGraphics();
+				draw(graphics);
+				g.drawImage(image,0,0,this);
+				
+				
 			}
 			public void checkCollision() {
 				//stops paddles at window edges
