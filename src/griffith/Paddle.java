@@ -27,9 +27,18 @@ public class Paddle extends Rectangle {
 			break;
 		}
 	}
-	
-	public void keyReleased(KeyEvent e) {
-		
+	//Stop Paddle Movement
+		public void keyReleased(KeyEvent e) {
+		    switch(id) {
+		    case 1:
+		    	if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S)
+		    		setYDirection(0);
+		    	break;
+		    case 2:
+		    	if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN)
+		    		setYDirection(0);
+		    	break;
+		    }		
 	}
 	
 	public void setYDirection(int yDirection) {
