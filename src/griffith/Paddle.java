@@ -14,10 +14,17 @@ public class Paddle extends Rectangle {
 		super(x, y, width, height);
 		this.id = id;
 	}
-	
+	//Handle keys for player 1 (W,S) and player 2 (UP,DOWN)
 	public void keyPressed(KeyEvent e) {
-		if(id == 1 && e.getKeyCode() == KeyEvent.VK_W) {
-			setYDirection(-speed);
+		switch(id) {
+		case 1:
+			if(e.getKeyCode() == KeyEvent.VK_W) setYDirection(-speed);
+			if(e.getKeyCode() == KeyEvent.VK_S) setYDirection(speed);
+			break;
+		case 2:
+			if(e.getKeyCode() == KeyEvent.VK_UP) setYDirection(-speed);
+			if(e.getKeyCode() == KeyEvent.VK_DOWN) setYDirection(speed);
+			break;
 		}
 	}
 	
