@@ -14,5 +14,9 @@ public class PongGame {
 		GameFrame frame = new GameFrame();
 
 		
+		
+		//basicaly the game is ready to run but with a lot of bugs, some funcionalities is not working because we need to dive
+		// in library Jpanel and Jfram to figure how to fix
+		
 	}
 }
