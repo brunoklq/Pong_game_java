@@ -7,8 +7,6 @@ import com.sun.prism.paint.Color;
 
 public class Paddle extends Rectangle {
 	
-	public static final int PADDLE_WIDTH = 25;
-	public static final int PADDLE_HEIGHT = 100;
 	int id;
 	int yVelocity;
 	int speed = 10;
