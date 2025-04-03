@@ -34,13 +34,16 @@ public abstract class GamePanel extends JPanel implements Runnable {
 	Score score;
 
 
-			GamePanel(){
+				GamePanel(){
 			
 				newPaddles();
+				score = new Score(GAME_WIDTH,GAME_HEIGHT);
 				
-			
+				this.setFocusable(true);
+				this.addKeyListener(new AL());
 				this.setPreferredSize(SCREEN_SIZE);
-			
+				
+				
 				
 			
 				gameThread = new Thread(this);
