@@ -6,11 +6,13 @@ import java.util.*;
 import javax.swing.*;
 
 
-public class GameFrame extends JFrame{
+public class GameFrame extends JFrame{ // class getting JFrame
 
 	GamePanel panel;
 	
-	GameFrame(){
+	//general panel to have the frame of game
+	
+	GameFrame(){ // constructor for GameFrame
 		
 		panel = new GamePanel();
 		this.add(panel);

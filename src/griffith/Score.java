@@ -6,22 +6,23 @@ import java.util.*;
 import javax.swing.*;
 
 
-public class Score {
+public class Score { // class for score
 	
 	
+	//attributes
 	static int GAME_WIDTH;
 	static int GAME_HEIGHT;
 	int player_1;
 	int player_2;
 	
-	Score(int GAME_WIDTH, int GAME_HEIGHT){
+	Score(int GAME_WIDTH, int GAME_HEIGHT){ // constructor of score class
 		
 		Score.GAME_HEIGHT = GAME_HEIGHT;
 		Score.GAME_WIDTH = GAME_WIDTH;
 		
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g) { // method to draw the score on game
 		
 		g.setColor(Color.white);
 		g.setFont(new Font("Consolas", Font.PLAIN, 60));

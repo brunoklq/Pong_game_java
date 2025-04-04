@@ -8,6 +8,9 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
+	
+	// attributes for GamePanel
+	
 	static final int GAME_WIDTH = 1000;
 
 	static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
@@ -20,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 	static final int PADDLE_HEIGHT = 100;
 
+	
+	// attributes inherited for GamePanel
 	Thread gameThread;
 
 	Image image;
@@ -34,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 	Score score;
 
 
-	GamePanel(){
+	GamePanel(){ // constructor for gamePanel
 
 		newPaddles();
 		newBall();
@@ -53,24 +58,24 @@ public class GamePanel extends JPanel implements Runnable {
 
 	}
 
-	public void newBall() {
+	public void newBall() { // method to get a new ball with ther attributes
 
 		random = new Random();
 		ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER,BALL_DIAMETER);
 
 	}
-	public void newPaddles() {
+	public void newPaddles() { // method to get a new paddle with ther attributes
 		paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
 		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 	}
-	public void draw(Graphics g) {
+	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
 		paddle2.draw(g);
 		ball.draw(g);
 		score.draw(g);
-		//Toolkit.getDefaultToolkit().sync();
+		Toolkit.getDefaultToolkit().sync();
 	}
-	public void paint(Graphics g) {
+	public void paint(Graphics g) { //metood to paint and create image
 
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
@@ -79,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	}
-public void checkCollision() {
+public void checkCollision() { // the complex checkcollision method
 		
 		//bounce ball off top & bottom window edges
 		if(ball.y <=0) {
@@ -132,13 +137,13 @@ public void checkCollision() {
 			System.out.println("Player 1: "+score.player_1);
 		}
 	}
-	public void move() {
+	public void move() { // method to move the paddle and ball
 		paddle1.move();
 		paddle2.move();
 		ball.move();
 	}
 	
-	public void run() {
+	public void run() { // method to run the game in gamepanel
 		long lastime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000/ amountOfTicks;
@@ -158,13 +163,13 @@ public void checkCollision() {
 			
 		}
 	}
-	public class AL extends KeyAdapter {
+	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
 			paddle2.keyPressed(e);
 		}
 
-		public void keyReleased(KeyEvent e) {
+		public void keyReleased(KeyEvent e) {// method to read the event to get keyboard values
 			paddle1.keyReleased(e);
 			paddle2.keyReleased(e);
 		}
