@@ -19,7 +19,7 @@ public class GameFrame extends JFrame{ // class getting JFrame
 		this.add(panel);
 		this.setTitle("Pong Game");
 		this.setResizable(false);
-		this.setBackground(Color.blue);
+		this.setBackground(Color.black);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setVisible(true);

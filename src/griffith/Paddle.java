@@ -71,7 +71,9 @@ public class Paddle extends Rectangle {
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillRect(x, y, width, height);
-    }
+    
+	}
+    
 
     // Handles keyboard input for paddle movement
     public void keyPressed(KeyEvent e) {

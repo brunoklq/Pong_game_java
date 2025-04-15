@@ -42,29 +42,27 @@ public class GamePanel extends JPanel implements Runnable {
 	Paddle paddle2;
 	Ball ball;
 	Score score;
-	public BufferedImage backgroundImage;
+	private BufferedImage backgroundImage;
 
 	GamePanel() throws IOException{ // constructor for gamePanel
 
-		
-		
-	try {
-		
-		backgroundImage = ImageIO.read(new File("C:\\Users\\bruno\\Documents\\projects\\Pong_game_java\\src\\griffith\\image_campo.png"));
-		
-		
-	} 
-	
-	catch(IOException e) {
-        e.printStackTrace();
-    }
-			
 
+		try {
+			
+			backgroundImage = ImageIO.read(new File("C:\\Users\\bruno\\Documents\\projects\\Pong_game_java\\src\\griffith\\image_campo.png"));
+			
+			
+		} 
 		
-		
-		
+		catch(IOException e) {
+	        e.printStackTrace();
+		}
+
 		newPaddles();
 		newBall();
+		
+		
+	
 		score = new Score(GAME_WIDTH,GAME_HEIGHT);
 
 		this.setFocusable(true);
@@ -106,9 +104,11 @@ public class GamePanel extends JPanel implements Runnable {
 
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
+		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 		draw(graphics);
-		g.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-
+		
+		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
+	
 
 	}
 public void checkCollision() { // the complex checkcollision method
