@@ -75,6 +75,11 @@ public class GamePanel extends JPanel implements Runnable {
 		score.draw(g);
 		Toolkit.getDefaultToolkit().sync();
 	}
+	public void move() { // method to move the paddle and ball
+		paddle1.move();
+		paddle2.move();
+		ball.move();
+	} 
 	public void paint(Graphics g) { //metood to paint and create image
 
 		image = createImage(getWidth(),getHeight());
@@ -137,11 +142,7 @@ public void checkCollision() { // the complex checkcollision method
 			System.out.println("Player 1: "+score.player_1);
 		}
 	}
-	public void move() { // method to move the paddle and ball
-		paddle1.move();
-		paddle2.move();
-		ball.move();
-	}
+	
 	
 	public void run() { // method to run the game in gamepanel
 		long lastime = System.nanoTime();

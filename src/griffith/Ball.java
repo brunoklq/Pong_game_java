@@ -11,22 +11,17 @@ public class Ball extends Rectangle{ // class for ball
 	
 	//attributes
 	Random random;
-	int xVelocity;
+	int xVelocity ;
 	int yVelocity;
-	int initialSpeed = 1;
+	//int initialSpeed;
 
 	Ball(int x, int y, int width, int height){ // constructor for ball
 		super(x,y,width,height);
 		random = new Random();
-		int randomXDirection = random.nextInt(1);
+		int randomXDirection = random.nextInt(2);
 		if(randomXDirection == 0)
 			randomXDirection--;
-		setXDirection(randomXDirection*initialSpeed);
-		
-		int randomYDirection = random.nextInt(1);
-		if(randomYDirection == 0)
-			randomYDirection--;
-		setYDirection(randomYDirection*initialSpeed);
+	
 		
 		
 	}
