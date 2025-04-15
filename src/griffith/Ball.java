@@ -13,8 +13,7 @@ public class Ball extends Rectangle{ // class for ball
 	Random random;
 	int xVelocity;
 	int yVelocity ;
-	//int initialSpeed;
-	int speed = 2;
+
 
 	Ball(int x, int y, int width, int height){ // constructor for ball
 		super(x,y,width,height);
@@ -33,10 +32,10 @@ public class Ball extends Rectangle{ // class for ball
 	}
 	
 	public void setXDirection(int randomXDirection) { // method to set direction x
-		xVelocity = randomXDirection * speed;
+		xVelocity = randomXDirection ;
 	}
 	public void setYDirection(int randomYDirection) {// method to set direction y
-		yVelocity = randomYDirection * speed;
+		yVelocity = randomYDirection ;
 	}  
 	
 	public void move() { // method to move ball
