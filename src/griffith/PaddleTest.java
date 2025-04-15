@@ -17,4 +17,12 @@ class PaddleTest {
     void testGetCenterY() {
         assertEquals(250, paddle.getCenterY()); // 200 + 100/2 = 250
     }
+    
+    @Test
+    void testResetPosition() {
+        paddle.y = 0; // move it somewhere else
+        paddle.resetPosition();
+        assertEquals(200, paddle.y); // should return to the initial y
+    }
+
 }
