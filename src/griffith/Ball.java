@@ -9,11 +9,12 @@ import javax.swing.*;
 public class Ball extends Rectangle{ // class for ball 
 	
 	
-	//attributes
+	//attr ibutes
 	Random random;
-	int xVelocity ;
-	int yVelocity;
+	int xVelocity;
+	int yVelocity ;
 	//int initialSpeed;
+	int speed = 2;
 
 	Ball(int x, int y, int width, int height){ // constructor for ball
 		super(x,y,width,height);
@@ -21,17 +22,22 @@ public class Ball extends Rectangle{ // class for ball
 		int randomXDirection = random.nextInt(2);
 		if(randomXDirection == 0)
 			randomXDirection--;
-	
+		setXDirection(randomXDirection);
+		
+		int randomYDirection = random.nextInt(2);
+		if(randomYDirection == 0)
+			randomYDirection--;
+		setYDirection(randomYDirection);
 		
 		
 	}
 	
 	public void setXDirection(int randomXDirection) { // method to set direction x
-		xVelocity = randomXDirection;
+		xVelocity = randomXDirection * speed;
 	}
 	public void setYDirection(int randomYDirection) {// method to set direction y
-		yVelocity = randomYDirection;
-	}
+		yVelocity = randomYDirection * speed;
+	}  
 	
 	public void move() { // method to move ball
 		x += xVelocity;

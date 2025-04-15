@@ -154,7 +154,8 @@ public void checkCollision() { // the complex checkcollision method
 			long now = System.nanoTime();
 			delta += ( now - lastime)/ns;
 			lastime = now;
-			if(delta >=1);{
+			if(delta >=1)
+			{
 				
 				move();
 				checkCollision();

@@ -60,7 +60,7 @@ public class Paddle extends Rectangle {
     }
 
     public void move() {
-        y += yVelocity;
+        y = y + yVelocity;
     }
     //Draw the paddle on screen
     public void draw(Graphics g) {
