@@ -1,6 +1,7 @@
 package griffith;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
 
@@ -8,7 +9,7 @@ import javax.swing.*;
 public class PongGame {
 
 	
-	public static void main(String[] args) { // the main method 
+	public static void main(String[] args) throws IOException { // the main method 
 		
 		
 		GameFrame frame = new GameFrame(); // object called

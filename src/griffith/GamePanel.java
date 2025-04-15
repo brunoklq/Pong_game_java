@@ -2,7 +2,12 @@ package griffith;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -37,10 +42,27 @@ public class GamePanel extends JPanel implements Runnable {
 	Paddle paddle2;
 	Ball ball;
 	Score score;
+	public BufferedImage backgroundImage;
 
+	GamePanel() throws IOException{ // constructor for gamePanel
 
-	GamePanel(){ // constructor for gamePanel
+		
+		
+	try {
+		
+		backgroundImage = ImageIO.read(new File("C:\\Users\\bruno\\Documents\\projects\\Pong_game_java\\src\\griffith\\image_campo.png"));
+		
+		
+	} 
+	
+	catch(IOException e) {
+        e.printStackTrace();
+    }
+			
 
+		
+		
+		
 		newPaddles();
 		newBall();
 		score = new Score(GAME_WIDTH,GAME_HEIGHT);
@@ -85,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
 		draw(graphics);
-		g.drawImage(image,0,0,this);
+		g.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 
 
 	}
