@@ -9,7 +9,7 @@ import javax.swing.*;
 public class Ball extends Rectangle{ // class for ball 
 	
 	
-	//attr ibutes
+	//attributes
 	Random random;
 	int xVelocity;
 	int yVelocity ;
