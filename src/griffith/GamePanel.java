@@ -28,6 +28,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 	static final int PADDLE_HEIGHT = 100;
 
+	private enum STATE{ //Implementing Main Menu
+		MENU,
+		GAME
+	};
 	
 	// attributes inherited for GamePanel
 	Thread gameThread;
