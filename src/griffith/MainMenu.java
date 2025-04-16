@@ -22,9 +22,11 @@ public class MainMenu {
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		g.drawString("Play", playButton.x, playButton.y);
+		g.drawString("Play", playButton.x + 19, playButton.y +30);
 		g2d.draw(playButton);
+		g.drawString("Help", helpButton.x + 19, helpButton.y +30);
 		g2d.draw(helpButton);
+		g.drawString("Quit", quitButton.x + 19, quitButton.y +30);
 		g2d.draw(quitButton);
 	}
 	
