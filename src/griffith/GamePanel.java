@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		try {
 			
-			backgroundImage = ImageIO.read(new File("C:\\Users\\bruno\\Documents\\projects\\Pong_game_java\\src\\griffith\\image_campo.png")); // the background image drawing behind the set of paddles
+			backgroundImage = ImageIO.read(new File("src/griffith/image_campo.png")); // the background image drawing behind the set of paddles
 			
 			
 		} 
