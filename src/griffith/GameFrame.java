@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 
 public class GameFrame extends JFrame{ // class getting JFrame
@@ -24,5 +26,6 @@ public class GameFrame extends JFrame{ // class getting JFrame
 		this.pack();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		this.addMouseListener(new MouseInput());
 	}
 }

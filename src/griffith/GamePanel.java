@@ -6,14 +6,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
+import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 
 
 public class GamePanel extends JPanel implements Runnable {
 
-	
 	// attributes for GamePanel
 	
 	static final int GAME_WIDTH = 1000;
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 	private MainMenu mainmenu = new MainMenu();
 	
 	
-	private enum STATE{ //Implementing Main Menu
+	public static enum STATE{ //Implementing Main Menu
 		MENU,
 		GAME
 	};
@@ -53,9 +53,9 @@ public class GamePanel extends JPanel implements Runnable {
 	Ball ball;
 	Score score;
 	private BufferedImage backgroundImage;
+	
 
 	GamePanel() throws IOException{ // constructor for gamePanel
-
 
 		try {
 			
@@ -80,13 +80,13 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setPreferredSize(SCREEN_SIZE);
 
 
-
-
 		gameThread = new Thread(this);
 
 		gameThread.start();
-
+		this.addMouseListener(new MouseInput());
 	}
+	
+	
 	
 	public void newBall() { // method to get a new ball with ther attributes
 
@@ -183,7 +183,6 @@ public void checkCollision() { // the complex checkcollision method
 	
 	
 	public void run() { // method to run the game in gamepanel
-		if(State == STATE.GAME) { //Main menu code
 		long lastime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000/ amountOfTicks;
@@ -203,7 +202,7 @@ public void checkCollision() { // the complex checkcollision method
 			}
 			
 		}
-	}
+	
 	}
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
@@ -215,6 +214,7 @@ public void checkCollision() { // the complex checkcollision method
 			paddle1.keyReleased(e);
 			paddle2.keyReleased(e);
 		}
+	
 		
 	
 	
