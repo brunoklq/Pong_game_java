@@ -28,12 +28,16 @@ public class GamePanel extends JPanel implements Runnable {
 
 	static final int PADDLE_HEIGHT = 100;
 
+	private MainMenu mainmenu = new MainMenu();
+	
+	
 	private enum STATE{ //Implementing Main Menu
 		MENU,
 		GAME
 	};
 	
 	private STATE State = STATE.MENU;
+
 	
 	// attributes inherited for GamePanel
 	Thread gameThread;
@@ -83,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
 		gameThread.start();
 
 	}
-
+	
 	public void newBall() { // method to get a new ball with ther attributes
 
 		random = new Random();
