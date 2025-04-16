@@ -44,6 +44,25 @@ public class MouseInput implements MouseListener{
 			}
 		}
 		
+		//Help Button
+		if(mx >= GamePanel.GAME_WIDTH / 3 + 120 && mx <= GamePanel.GAME_WIDTH / 3 + 220) 
+		{
+			if(my >= 250 && my <= 300) 
+			{
+				//System.out.println("Help needs to be written");
+			}
+		}
+				
+		//Quit Button
+		if(mx >= GamePanel.GAME_WIDTH / 3 + 120 && mx <= GamePanel.GAME_WIDTH / 3 + 220) 
+		{
+			if(my >= 350 && my <= 400) 
+			{
+				GamePanel.State = GamePanel.STATE.GAME;
+				System.out.println("Goodbye!!");
+				System.exit(1);
+			}
+		}
 	}
 
 	@Override
