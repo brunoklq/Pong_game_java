@@ -2,7 +2,7 @@ package griffith;
 
 import java.awt.Font;
 import java.awt.Graphics;
-
+import java.awt.Color;
 
 public class MainMenu {
 
