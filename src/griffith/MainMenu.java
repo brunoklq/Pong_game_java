@@ -14,6 +14,8 @@ public class MainMenu {
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
 		
 		Font fnt0 = new Font("arial", Font.BOLD, 50);
 		g.setFont(fnt0);

@@ -40,8 +40,10 @@ public class MouseInput implements MouseListener{
 			if(my >= 150 && my <= 200) 
 			{
 				GamePanel.State = GamePanel.STATE.GAME;
+				System.out.println("Game started!");
 			}
 		}
+		
 	}
 
 	@Override
