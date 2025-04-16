@@ -102,19 +102,22 @@ public class GamePanel extends JPanel implements Runnable {
 		Toolkit.getDefaultToolkit().sync();
 	}
 	public void move() { // method to move the paddle and ball
+		if(State == STATE.GAME) {//Main menu Code
 		paddle1.move();
 		paddle2.move();
 		ball.move();
 	} 
-	public void paint(Graphics g) { //metood to paint and create image
+	}
+	public void paint(Graphics g) { //method to paint and create image
 
+		if(State == STATE.GAME) {//Main menu Code
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
 		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 		draw(graphics);
 		
 		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-	
+		}
 
 	}
 public void checkCollision() { // the complex checkcollision method
@@ -173,7 +176,7 @@ public void checkCollision() { // the complex checkcollision method
 	
 	
 	public void run() { // method to run the game in gamepanel
-		if(State == STATE.GAME) {
+		if(State == STATE.GAME) { //Main menu code
 		long lastime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000/ amountOfTicks;
