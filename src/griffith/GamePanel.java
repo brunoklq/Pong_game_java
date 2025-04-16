@@ -33,6 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
 		GAME
 	};
 	
+	private STATE State = STATE.MENU;
+	
 	// attributes inherited for GamePanel
 	Thread gameThread;
 
@@ -171,6 +173,7 @@ public void checkCollision() { // the complex checkcollision method
 	
 	
 	public void run() { // method to run the game in gamepanel
+		if(State == STATE.GAME) {
 		long lastime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000/ amountOfTicks;
@@ -190,6 +193,7 @@ public void checkCollision() { // the complex checkcollision method
 			}
 			
 		}
+	}
 	}
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
