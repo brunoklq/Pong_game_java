@@ -118,6 +118,9 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 		}
+	//	else if(State == STATE.MENU) {
+	//	To be modified for a diffrent menu background	
+	//	}
 
 	}
 public void checkCollision() { // the complex checkcollision method
