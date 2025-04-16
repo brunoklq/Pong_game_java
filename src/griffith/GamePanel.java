@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
 		GAME
 	};
 	
-	private STATE State = STATE.MENU;
+	public static STATE State = STATE.MENU;
 
 	
 	// attributes inherited for GamePanel
