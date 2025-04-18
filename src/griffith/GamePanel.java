@@ -107,8 +107,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
-	
-		cpu.draw(g);
+		paddle2.draw(g);
+		//cpu.draw(g); method call for whenever the cpu is used
 		ball.draw(g);
 		score.draw(g);
 		Toolkit.getDefaultToolkit().sync();
@@ -118,9 +118,10 @@ public class GamePanel extends JPanel implements Runnable {
 		paddle1.move();
 		paddle2.move();
 		
-		cpu.move();
 		
 		ball.move();
+		
+		cpu.autoMove(ball);
 	} 
 	}
 	public void paint(Graphics g) { //method to paint and create image
@@ -168,11 +169,24 @@ public void checkCollision() { // the complex checkcollision method
 			ball.setXDirection(-ball.xVelocity);
 			ball.setYDirection(ball.yVelocity);
 		}
+		
+		/*if(ball.intersects(cpu)) {     same method but fpr the cpu
+			ball.xVelocity = Math.abs(ball.xVelocity);
+			ball.xVelocity++; //optional for more difficulty
+			if(ball.yVelocity>0)
+				ball.yVelocity++; //optional for more difficulty
+			else
+				ball.yVelocity--;
+			ball.setXDirection(-ball.xVelocity);
+			ball.setYDirection(ball.yVelocity);
+		}*/
+		
 		//stops paddles at window edges
 		if(paddle1.y<=0)
 			paddle1.y=0;
 		if(paddle1.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
 			paddle1.y = GAME_HEIGHT-PADDLE_HEIGHT;
+		
 		if(paddle2.y<=0)
 			paddle2.y=0;
 		if(paddle2.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
