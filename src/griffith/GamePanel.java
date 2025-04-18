@@ -50,6 +50,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 	Paddle paddle1;
 	Paddle paddle2;
+	
+	Cpu cpu;
+	
 	Ball ball;
 	Score score;
 	private BufferedImage backgroundImage;
@@ -97,6 +100,10 @@ public class GamePanel extends JPanel implements Runnable {
 	public void newPaddles() { // method to get a new paddle with ther attributes
 		paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
 		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
+		
+		cpu = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
+		
+		
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
@@ -109,6 +116,9 @@ public class GamePanel extends JPanel implements Runnable {
 		if(State == STATE.GAME) {//Main menu Code
 		paddle1.move();
 		paddle2.move();
+		
+		cpu.move();
+		
 		ball.move();
 	} 
 	}
@@ -166,6 +176,11 @@ public void checkCollision() { // the complex checkcollision method
 			paddle2.y=0;
 		if(paddle2.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
 			paddle2.y = GAME_HEIGHT-PADDLE_HEIGHT;
+		
+		if(cpu.y<=0)
+			cpu.y=0;
+		if(cpu.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
+			cpu.y = GAME_HEIGHT-PADDLE_HEIGHT;
 		//give a player 1 point and creates new paddles & ball
 		if(ball.x <=0) {
 			score.player_2++;
