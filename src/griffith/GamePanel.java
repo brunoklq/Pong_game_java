@@ -107,7 +107,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
-		paddle2.draw(g);
+	
+		cpu.draw(g);
 		ball.draw(g);
 		score.draw(g);
 		Toolkit.getDefaultToolkit().sync();
