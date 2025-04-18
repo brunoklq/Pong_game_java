@@ -14,6 +14,9 @@ public class Cpu extends Rectangle {
 	    int speed = 10;
 	    
 	    int centerY = y + height / 2;
+	    
+	    private long lastMoveTime = 0;
+	    private final long MOVE_INTERVAL = 16;
        
 
 	    private final int initialY;
@@ -82,23 +85,27 @@ public class Cpu extends Rectangle {
 	    // Handles cpu movement
 	    
 	    public void autoMove(Ball ball) {
-	    	 int ballCenterY = ball.y + ball.height / 2;
-	    	 
-		    if (Math.abs(centerY - ballCenterY) > speed) {
-	            if (centerY < ballCenterY) {
-	                setYDirection(speed);
-	            } else {
-	                setYDirection(-speed);
+	        if (!controllable) {
+	            long currentTime = System.currentTimeMillis();
+	            if (currentTime - lastMoveTime >= MOVE_INTERVAL) {
+	                lastMoveTime = currentTime;
+
+	                int centerY = y + height / 2;
+	                int ballCenterY = ball.y + ball.height / 2;
+
+	                if (Math.abs(centerY - ballCenterY) > speed) {
+	                    if (centerY < ballCenterY) {
+	                        setYDirection(speed);
+	                    } else {
+	                        setYDirection(-speed);
+	                    }
+	                } else {
+	                    setYDirection(0);
+	                }
+
+	                move();
 	            }
-	        } else {
-	            setYDirection(0);
 	        }
-	
-	        move();
-	        
-			}
-
-	}
-
+	    }}
 
 
