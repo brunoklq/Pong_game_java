@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
 	private BufferedImage backgroundImage;
 	
 
-	GamePanel() throws IOException{ // constructor for gamePanel
+	GamePanel() throws IOException{ // constructor for gamePane
 
 		try {
 			
