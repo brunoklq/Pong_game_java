@@ -12,6 +12,9 @@ public class Cpu extends Rectangle {
 	    int id;
 	    int yVelocity;
 	    int speed = 10;
+	    
+	    int centerY = y + height / 2;
+       
 
 	    private final int initialY;
 	    private Color color = Color.WHITE;
@@ -79,9 +82,22 @@ public class Cpu extends Rectangle {
 	    // Handles cpu movement
 	    
 	    public void autoMove(Ball ball) {
-	        if (!controllable) {
-	            int centerY = y + height / 2;
-	            int ballCenterY = ball.y + ball.height / 2;}}
+	    	 int ballCenterY = ball.y + ball.height / 2;
+	    	 
+		    if (Math.abs(centerY - ballCenterY) > speed) {
+	            if (centerY < ballCenterY) {
+	                setYDirection(speed);
+	            } else {
+	                setYDirection(-speed);
+	            }
+	        } else {
+	            setYDirection(0);
+	        }
+	
+	        move();
+	        
+			}
+
 	}
 
 
