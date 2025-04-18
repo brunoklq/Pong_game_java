@@ -18,7 +18,7 @@ public class MouseInput implements MouseListener{
 		//public Rectangle helpButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	    //public Rectangle quitButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 		
-		//Play Button
+		//Play one player Button
 		if(mx >= GamePanel.GAME_WIDTH / 3 + 120 && mx <= GamePanel.GAME_WIDTH / 3 + 220) 
 		{
 			if(my >= 150 && my <= 200) 

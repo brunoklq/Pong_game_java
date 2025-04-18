@@ -16,7 +16,7 @@ public class Cpu extends Rectangle {
 	    int centerY = y + height / 2;
 	    
 	    private long lastMoveTime = 0;
-	    private final long MOVE_INTERVAL = 16;
+	    private final long MOVE_INTERVAL = 20;
        
 
 	    private final int initialY;

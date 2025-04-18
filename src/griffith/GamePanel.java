@@ -103,12 +103,13 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		cpu = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 		
+		cpu.disableControl(); 
 		
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
-		paddle2.draw(g);
-		//cpu.draw(g); method call for whenever the cpu is used
+		//paddle2.draw(g);
+		cpu.draw(g); //method call for whenever the cpu is used
 		ball.draw(g);
 		score.draw(g);
 		Toolkit.getDefaultToolkit().sync();
@@ -159,18 +160,7 @@ public void checkCollision() { // the complex checkcollision method
 			ball.setXDirection(ball.xVelocity);
 			ball.setYDirection(ball.yVelocity);
 		}
-		if(ball.intersects(paddle2)) {
-			ball.xVelocity = Math.abs(ball.xVelocity);
-			ball.xVelocity++; //optional for more difficulty
-			if(ball.yVelocity>0)
-				ball.yVelocity++; //optional for more difficulty
-			else
-				ball.yVelocity--;
-			ball.setXDirection(-ball.xVelocity);
-			ball.setYDirection(ball.yVelocity);
-		}
-		
-		/*if(ball.intersects(cpu)) {     same method but fpr the cpu
+		/*if(ball.intersects(paddle2)) {
 			ball.xVelocity = Math.abs(ball.xVelocity);
 			ball.xVelocity++; //optional for more difficulty
 			if(ball.yVelocity>0)
@@ -180,6 +170,17 @@ public void checkCollision() { // the complex checkcollision method
 			ball.setXDirection(-ball.xVelocity);
 			ball.setYDirection(ball.yVelocity);
 		}*/
+		
+		if(ball.intersects(cpu)) {     //same method but fpr the cpu
+			ball.xVelocity = Math.abs(ball.xVelocity);
+			ball.xVelocity++; //optional for more difficulty
+			if(ball.yVelocity>0)
+				ball.yVelocity++; //optional for more difficulty
+			else
+				ball.yVelocity--;
+			ball.setXDirection(-ball.xVelocity);
+			ball.setYDirection(ball.yVelocity);
+		}
 		
 		//stops paddles at window edges
 		if(paddle1.y<=0)
@@ -224,7 +225,7 @@ public void checkCollision() { // the complex checkcollision method
 			lastime = now;
 			if(delta >=1)
 			{
-				
+				cpu.autoMove(ball);
 				move();
 				checkCollision();
 				repaint();
