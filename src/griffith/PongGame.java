@@ -20,8 +20,7 @@ public class PongGame {
 		frame.setVisible(true);
 		
 		
-		//basicaly the game is ready to run but with a lot of bugs, some funcionalities is not working because we need to dive
-		// in library Jpanel and Jfram to figure how to fix
+		//The game is ready and now with a background with a field sccoer game
 		
 	}
 	

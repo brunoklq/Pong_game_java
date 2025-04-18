@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Cpu extends Rectangle {
 	
-
+		//Attributes for CPU
 	    private static final long serialVersionUID = 1L;
 
 	    int id;
