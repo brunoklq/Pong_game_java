@@ -77,7 +77,7 @@ public class Cpu extends Rectangle {
 	    
 
 	    // Handles keyboard input for paddle movement
-	    public void keyPressed(KeyEvent e) {
+	    public void move(Ball randomballdirectionX) {
 	        if (!controllable) return;
 
 	        switch (id) {
