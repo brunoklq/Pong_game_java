@@ -76,53 +76,12 @@ public class Cpu extends Rectangle {
 		}
 	    
 
-	    // Handles keyboard input for paddle movement
-	    public void move(Ball randomballdirectionX) {
-	        if (!controllable) return;
-
-	        switch (id) {
-	            case 1:
-	                if (e.getKeyCode() == KeyEvent.VK_W) {
-	                    setYDirection(-speed);
-	                    move();
-	                }
-	                if (e.getKeyCode() == KeyEvent.VK_S) {
-	                    setYDirection(speed);
-	                    move();
-	                }
-	                break;
-	            case 2:
-	                if (e.getKeyCode() == KeyEvent.VK_UP) {
-	                    setYDirection(-speed);
-	                    move();
-	                }
-	                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-	                    setYDirection(speed);
-	                    move();
-	                }
-	                break;
-	        }
-	    }
-
-	    // Handles key release to stop paddle movement
-	    public void keyReleased(KeyEvent e) {
-	        if (!controllable) return;
-
-	        switch (id) {
-	            case 1:
-	                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S) {
-	                    setYDirection(0);
-	                    move();
-	                }
-	                break;
-	            case 2:
-	                if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
-	                    setYDirection(0);
-	                    move();
-	                }
-	                break;
-	        }
-	    }
+	    // Handles cpu movement
+	    
+	    public void autoMove(Ball ball) {
+	        if (!controllable) {
+	            int centerY = y + height / 2;
+	            int ballCenterY = ball.y + ball.height / 2;}}
 	}
 
 
