@@ -10,7 +10,8 @@ public class Paddle extends Rectangle {
 
     int id;
     int yVelocity;
-    int speed = 10;
+    private static final int DEFAULT_SPEED = 10;
+    private int speed;
 
     private final int initialY;
     private Color color = Color.WHITE;
@@ -22,6 +23,7 @@ public class Paddle extends Rectangle {
         this.id = id;
         this.initialY = y;
         this.color = (id == 1) ? Color.BLUE : Color.RED; // Default color per player
+        this.speed = DEFAULT_SPEED;
     }
 
     // Resets the paddle's position to its initial Y coordinate
