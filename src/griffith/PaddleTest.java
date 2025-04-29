@@ -29,6 +29,17 @@ class PaddleTest {
         paddle.resetPosition();
         assertEquals(200, paddle.y);
     }
+    
+    @Test
+    void testDefaultSpeed() {
+        assertEquals(10, paddle.speed); // Check default speed value
+    }
+
+    @Test
+    void testPlayer2Color() {
+        Paddle paddle2 = new Paddle(0, 0, 25, 100, 2); // Player 2
+        assertEquals(Color.RED, paddle2.getColor()); // Player 2 should be RED
+    }
 
     // Test that the paddle does not move outside the top or bottom screen bounds
     @Test

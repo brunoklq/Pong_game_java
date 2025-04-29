@@ -11,7 +11,7 @@ public class Paddle extends Rectangle {
     int id;
     int yVelocity;
     private static final int DEFAULT_SPEED = 10;
-    private int speed;
+    int speed;
 
     private final int initialY;
     private Color color = Color.WHITE;
