@@ -10,14 +10,17 @@ import javax.swing.*;
 public class PongGame {
 
 	
-	public static boolean useFirstGame = false;
-	
+	public static boolean useFirstGame;
+
+	public MainMenu main;
 	public static void main(String[] args) throws IOException { // the main method 
+		
+		
+		
 		
 		launchGame(useFirstGame);
 		
-		//The game is ready and now with a background with a field sccoer game
-		
+
 	}
 	
 	

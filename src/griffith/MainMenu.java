@@ -5,11 +5,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.IOException;
+
+import javax.swing.JFrame;
 
 public class MainMenu {
+	
+	
 
-	public Rectangle play2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
-	public Rectangle helpButton = new Rectangle(GamePanel2.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
+	public Rectangle play2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 20 ,150 ,300 ,50);
+	public Rectangle helpButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + -80 ,250 ,500 ,50);
 	public Rectangle quitButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 	public Rectangle cpuButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	
@@ -25,11 +30,11 @@ public class MainMenu {
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		g.drawString("Play", play2Button.x + 19, play2Button.y +30);
+		g.drawString("Play Pong Game", play2Button.x + 30, play2Button.y +35);
 		g2d.draw(play2Button);
 		//g.drawString("Play single player mode", cpuButton.x + 19, cpuButton.y +30);
 		//g2d.draw(cpuButton);
-		g.drawString("PG2", helpButton.x + 19, helpButton.y +30);
+		g.drawString("Play Pong Game Table Version", helpButton.x + 30, helpButton.y +35);
 		g2d.draw(helpButton);
 		g.drawString("Quit", quitButton.x + 19, quitButton.y +30);
 		g2d.draw(quitButton);
