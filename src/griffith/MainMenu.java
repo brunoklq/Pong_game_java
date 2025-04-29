@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 public class MainMenu {
 
 	public Rectangle play2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
-	public Rectangle helpButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
+	public Rectangle helpButton = new Rectangle(GamePanel2.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	public Rectangle quitButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 	public Rectangle cpuButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	

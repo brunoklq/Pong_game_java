@@ -14,10 +14,16 @@ public class PongGame {
 		
 		JFrame frame = new JFrame();
 		GamePanel panel = new GamePanel();
+		GamePanel2 panel2 = new GamePanel2();
 		frame.add(panel);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.add(panel2);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
 		
 		
 		//The game is ready and now with a background with a field sccoer game

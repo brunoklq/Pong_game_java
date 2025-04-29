@@ -29,7 +29,7 @@ public class MouseInput implements MouseListener{
 		}
 		
 		//Help Button
-		if(mx >= GamePanel.GAME_WIDTH / 3 + 120 && mx <= GamePanel.GAME_WIDTH / 3 + 220) 
+		if(mx >= GamePanel2.GAME_WIDTH / 3 + 120 && mx <= GamePanel2.GAME_WIDTH / 3 + 220) 
 		{
 			if(my >= 250 && my <= 300) 
 			{
