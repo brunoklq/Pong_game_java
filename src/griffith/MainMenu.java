@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
