@@ -27,7 +27,7 @@ public class MainMenu {
 		Font fnt0 = new Font("arial", Font.BOLD, 50);
 		g.setFont(fnt0);
 		g.setColor(Color.white);
-		g.drawString("Pong Pro Max", GamePanel.GAME_WIDTH / 3, 100);
+		g.drawString("Pongo", GamePanel.GAME_WIDTH / 3 + 85 , 100);
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
