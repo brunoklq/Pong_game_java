@@ -2,22 +2,23 @@ package griffith;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 public class Paddle extends Rectangle {
 
     private static final long serialVersionUID = 1L;
 
+    private static final int DEFAULT_SPEED = 10;
+
     int id;
     int yVelocity;
-    private static final int DEFAULT_SPEED = 10;
     int speed;
-
     private final int initialY;
     private Color color = Color.WHITE;
     private boolean controllable = true;
 
-    // Constructor assigns paddle position and ID, sets initial position and color
+    /**
+     * Assigns paddle position and ID, sets initial position and color.
+     */
     public Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id) {
         super(x, y, PADDLE_WIDTH, PADDLE_HEIGHT);
         this.id = id;
@@ -26,48 +27,65 @@ public class Paddle extends Rectangle {
         this.speed = DEFAULT_SPEED;
     }
 
-    // Resets the paddle's position to its initial Y coordinate
+    /**
+     * Resets the paddle to initial position.
+     */
     public void resetPosition() {
         y = initialY;
     }
 
-    // Enables paddle control (e.g., for human player)
+    /**
+     * Enables user control for the paddle.
+     */
     public void enableControl() {
         controllable = true;
     }
 
-    // Disables paddle control (e.g., for AI or pause)
+    /**
+     * Disables user control for the paddle (used for AI or paused state).
+     */
     public void disableControl() {
         controllable = false;
     }
 
-    // Returns whether the paddle is currently controllable
+    /**
+     * Returns whether the paddle is currently controllable.
+     */
     public boolean isControllable() {
         return controllable;
     }
 
-    // Returns the paddle's current color
+    /**
+     * Returns the paddle's assigned color.
+     * 
+     */
     public Color getColor() {
         return color;
     }
-    
+
+    /**
+     * Helper to choose paddle color based on ID.
+     */
     private Color getColorById(int id) {
         if (id == 1) return Color.BLUE;
         if (id == 2) return Color.RED;
         return Color.WHITE; // fallback
     }
 
-
-    // Sets the direction and magnitude of vertical movement
+    /**
+     * Sets the vertical movement direction of the paddle.
+     */
     public void setYDirection(int yDirection) {
         yVelocity = yDirection;
     }
-    
- // Updates paddle position and restricts movement within screen bounds
+
+    /**
+     * Updates the paddle's vertical position based on its velocity,
+     * and restricts it within the game panel boundaries.
+     */
     public void move() {
         y += yVelocity;
 
-        // Prevent paddle from moving off-screen vertically
         if (y < 0) {
             y = 0;
         } else if (y > (GamePanel.GAME_HEIGHT - height)) {
@@ -75,20 +93,24 @@ public class Paddle extends Rectangle {
         }
     }
 
-    // Draws the paddle with its assigned color
+    /**
+     * Draws the paddle on screen with its assigned color.
+     */
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillRect(x, y, width, height);
-    
-	}
-    
-    //Returns the vertical center Y position of the paddle.
+    }
+
+    /**
+     * Returns the vertical center Y position of the paddle.
+     */
     public double getCenterY() {
         return y + height / 2;
     }
-    
 
-    // Handles keyboard input for paddle movement
+    /**
+     * Handles key press events to control paddle movement.
+     */
     public void keyPressed(KeyEvent e) {
         if (!controllable) return;
 
@@ -101,7 +123,9 @@ public class Paddle extends Rectangle {
         }
     }
 
-    // Handles key release to stop paddle movement
+    /**
+     * Handles key release events to stop paddle movement.
+     */
     public void keyReleased(KeyEvent e) {
         if (!controllable) return;
 
