@@ -114,7 +114,7 @@ public class Paddle extends Rectangle {
     public void keyPressed(KeyEvent e) {
         if (!controllable) return;
 
-<<<<<<< HEAD
+
         switch (id) {
             case 1:
                 if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -135,17 +135,7 @@ public class Paddle extends Rectangle {
                     setYDirection(speed);
                     move();
                 }
-                break;
-                
-=======
-        int key = e.getKeyCode();
-
-        if ((id == 1 && key == KeyEvent.VK_W) || (id == 2 && key == KeyEvent.VK_UP)) {
-            setYDirection(-speed);
-        } else if ((id == 1 && key == KeyEvent.VK_S) || (id == 2 && key == KeyEvent.VK_DOWN)) {
-            setYDirection(speed);
->>>>>>> 3484d68fca22d73c5ce4f0cb810ceb6d6a1f03bc
-        }
+                break;}
     }
 
     /**
