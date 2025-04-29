@@ -7,25 +7,25 @@ import javax.swing.*;
 
 
 
-public class PongGame {
+public class PongGame extends MouseInput {
 
 	
-	public static boolean useFirstGame;
+	public static boolean useFirstGame=true;
 
-	public MainMenu main;
+
 	public static void main(String[] args) throws IOException { // the main method 
 		
+		
+		MouseInput menu = new MouseInput();
 		
 		
 		
 		launchGame(useFirstGame);
 		
+	
+}
+	
 
-	}
-	
-	
-	
-	
 	public static void launchGame(boolean useFirstGame) throws IOException {
 	    JFrame gameFrame = new JFrame();
 	    
@@ -42,5 +42,7 @@ public class PongGame {
 	    
 	    
 	}
+
 	
+
 }

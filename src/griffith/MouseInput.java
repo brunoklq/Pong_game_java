@@ -11,6 +11,20 @@ public class MouseInput implements MouseListener{
 
 
 	
+	
+	
+	
+	
+	public boolean v1;
+	
+	public boolean isV1() {
+		return v1;
+	}
+
+	public void setV1(boolean v1) {
+		this.v1 = v1;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 
@@ -28,23 +42,25 @@ public class MouseInput implements MouseListener{
 		{
 			if(my >= 150 && my <= 200) 
 			{
+				
+				PongGame.useFirstGame = true;
 				GamePanel.State = GamePanel.STATE.GAME;
 				
-					PongGame.useFirstGame = true;
+				
 			
 				System.out.println("Game started! P1");
 			}
 		}
 		
 		//Help Button
-		if(mx >= GamePanel2.GAME_WIDTH / 3 + 120 && mx <= GamePanel2.GAME_WIDTH / 3 + 220) 
+		if(mx >= GamePanel.GAME_WIDTH / 3 + 120 && mx <= GamePanel.GAME_WIDTH / 3 + 220) 
 		{
 			if(my >= 250 && my <= 300) 
 			{
-				
-				GamePanel2.State = GamePanel2.STATE.GAME;
 				PongGame.useFirstGame = false;
-				
+				GamePanel2.State = GamePanel2.STATE.GAME;
+			
+			
 				System.out.println("Game started! P2");
 			}
 		}
@@ -60,10 +76,7 @@ public class MouseInput implements MouseListener{
 			}
 		}
 	}
-	
-	
 
-	
 
 	@Override
 	public void mouseReleased(MouseEvent e) {}
@@ -73,5 +86,12 @@ public class MouseInput implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	
+	
+	
+	
+
 
 }
+
+
