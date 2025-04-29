@@ -51,6 +51,7 @@ public class GamePanel2 extends JPanel implements Runnable {
 	Paddle paddle1;
 	Paddle paddle2;
 	Paddle paddle1_middle;
+	Cpu paddle2_cpu;
 	
 	Cpu cpu;
 	
@@ -105,13 +106,16 @@ public class GamePanel2 extends JPanel implements Runnable {
 		
 		cpu = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 		
+		paddle2_cpu = new Cpu(800, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
+		
 		cpu.disableControl(); 
 		
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
 		paddle1_middle.draw(g);
-		cpu.draw(g); //method call for whenever the cpu is used
+		cpu.draw(g);
+		paddle2_cpu.draw(g);//method call for whenever the cpu is used
 		ball.draw(g);
 		score.draw(g);
 		Toolkit.getDefaultToolkit().sync();
@@ -121,9 +125,10 @@ public class GamePanel2 extends JPanel implements Runnable {
 		paddle1.move();
 		paddle2.move();
 		paddle1_middle.move();
+	
 		
 		ball.move();
-		
+		paddle2_cpu.autoMove(ball);
 		cpu.autoMove(ball);
 	} 
 	}
@@ -228,6 +233,7 @@ public void checkCollision() { // the complex checkcollision method
 			if(delta >=1)
 			{
 				cpu.autoMove(ball);
+				paddle2_cpu.autoMove(ball);
 				move();
 				checkCollision();
 				repaint();

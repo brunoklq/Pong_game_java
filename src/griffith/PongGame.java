@@ -10,7 +10,7 @@ import javax.swing.*;
 public class PongGame extends MouseInput {
 
 	
-	public static boolean useFirstGame=true;
+	public static boolean useFirstGame=false;
 
 
 	public static void main(String[] args) throws IOException { // the main method 
