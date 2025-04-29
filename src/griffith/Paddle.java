@@ -22,7 +22,7 @@ public class Paddle extends Rectangle {
         super(x, y, PADDLE_WIDTH, PADDLE_HEIGHT);
         this.id = id;
         this.initialY = y;
-        this.color = (id == 1) ? Color.BLUE : Color.RED; // Default color per player
+        this.color = getColorById(id);
         this.speed = DEFAULT_SPEED;
     }
 
@@ -50,6 +50,13 @@ public class Paddle extends Rectangle {
     public Color getColor() {
         return color;
     }
+    
+    private Color getColorById(int id) {
+        if (id == 1) return Color.BLUE;
+        if (id == 2) return Color.RED;
+        return Color.WHITE; // fallback
+    }
+
 
     // Sets the direction and magnitude of vertical movement
     public void setYDirection(int yDirection) {
