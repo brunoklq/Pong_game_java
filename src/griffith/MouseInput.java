@@ -3,6 +3,9 @@ package griffith;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+
+import javax.swing.JFrame;
 
 public class MouseInput implements MouseListener{
 
@@ -24,7 +27,10 @@ public class MouseInput implements MouseListener{
 			if(my >= 150 && my <= 200) 
 			{
 				GamePanel.State = GamePanel.STATE.GAME;
-				System.out.println("Game started!");
+				
+					PongGame.useFirstGame = true;
+			
+				System.out.println("Game started! P1");
 			}
 		}
 		
@@ -35,8 +41,9 @@ public class MouseInput implements MouseListener{
 			{
 				
 				GamePanel2.State = GamePanel2.STATE.GAME;
-				System.out.println("Game started!");
-			
+				PongGame.useFirstGame = false;
+				
+				System.out.println("Game started! P2");
 			}
 		}
 				
@@ -51,6 +58,10 @@ public class MouseInput implements MouseListener{
 			}
 		}
 	}
+	
+	
+
+	
 
 	@Override
 	public void mouseReleased(MouseEvent e) {}
