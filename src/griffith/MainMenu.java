@@ -14,10 +14,9 @@ public class MainMenu {
 	
 	
 
-	public Rectangle play2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 20 ,150 ,300 ,50);
+	public Rectangle playButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 20 ,150 ,300 ,50);
 	public Rectangle helpButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + -80 ,250 ,500 ,50);
 	public Rectangle quitButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
-	public Rectangle cpuButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -31,11 +30,10 @@ public class MainMenu {
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		g.drawString("Play Pong Game", play2Button.x + 30, play2Button.y +35);
-		g2d.draw(play2Button);
-		//g.drawString("Play single player mode", cpuButton.x + 19, cpuButton.y +30);
-		//g2d.draw(cpuButton);
-		g.drawString("Play Pong Game Table Version", helpButton.x + 30, helpButton.y +35);
+		g.drawString("Play", playButton.x + 30, playButton.y +35);
+		g2d.draw(playButton);
+		
+		g.drawString("Help", helpButton.x + 30, helpButton.y +35);
 		g2d.draw(helpButton);
 		g.drawString("Quit", quitButton.x + 19, quitButton.y +30);
 		g2d.draw(quitButton);
