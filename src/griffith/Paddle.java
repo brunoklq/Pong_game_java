@@ -86,27 +86,14 @@ public class Paddle extends Rectangle {
     public void keyPressed(KeyEvent e) {
         if (!controllable) return;
 
-        switch (id) {
-            case 1:
-                if (e.getKeyCode() == KeyEvent.VK_W) {
-                    setYDirection(-speed);
-                    move();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_S) {
-                    setYDirection(speed);
-                    move();
-                }
-                break;
-            case 2:
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    setYDirection(-speed);
-                    move();
-                }
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    setYDirection(speed);
-                    move();
-                }
-                break;
+        int key = e.getKeyCode();
+
+        if ((id == 1 && key == KeyEvent.VK_W) || (id == 2 && key == KeyEvent.VK_UP)) {
+            setYDirection(-speed);
+            move();
+        } else if ((id == 1 && key == KeyEvent.VK_S) || (id == 2 && key == KeyEvent.VK_DOWN)) {
+            setYDirection(speed);
+            move();
         }
     }
 
@@ -114,19 +101,12 @@ public class Paddle extends Rectangle {
     public void keyReleased(KeyEvent e) {
         if (!controllable) return;
 
-        switch (id) {
-            case 1:
-                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S) {
-                    setYDirection(0);
-                    move();
-                }
-                break;
-            case 2:
-                if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    setYDirection(0);
-                    move();
-                }
-                break;
+        int key = e.getKeyCode();
+
+        if ((id == 1 && (key == KeyEvent.VK_W || key == KeyEvent.VK_S)) ||
+            (id == 2 && (key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN))) {
+            setYDirection(0);
+            move();
         }
     }
 }
