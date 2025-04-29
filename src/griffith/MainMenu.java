@@ -29,7 +29,7 @@ public class MainMenu {
 		g2d.draw(play2Button);
 		//g.drawString("Play single player mode", cpuButton.x + 19, cpuButton.y +30);
 		//g2d.draw(cpuButton);
-		g.drawString("Help", helpButton.x + 19, helpButton.y +30);
+		g.drawString("PG2", helpButton.x + 19, helpButton.y +30);
 		g2d.draw(helpButton);
 		g.drawString("Quit", quitButton.x + 19, quitButton.y +30);
 		g2d.draw(quitButton);

@@ -33,7 +33,10 @@ public class MouseInput implements MouseListener{
 		{
 			if(my >= 250 && my <= 300) 
 			{
-				//System.out.println("Help needs to be written");
+				
+				GamePanel2.State = GamePanel2.STATE.GAME;
+				System.out.println("Game started!");
+			
 			}
 		}
 				
