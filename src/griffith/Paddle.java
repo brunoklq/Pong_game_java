@@ -100,6 +100,7 @@ public class Paddle extends Rectangle {
                     move();
                 }
                 break;
+                
         }
     }
 
