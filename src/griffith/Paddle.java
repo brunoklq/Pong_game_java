@@ -97,10 +97,8 @@ public class Paddle extends Rectangle {
 
         if ((id == 1 && key == KeyEvent.VK_W) || (id == 2 && key == KeyEvent.VK_UP)) {
             setYDirection(-speed);
-            move();
         } else if ((id == 1 && key == KeyEvent.VK_S) || (id == 2 && key == KeyEvent.VK_DOWN)) {
             setYDirection(speed);
-            move();
         }
     }
 
@@ -113,7 +111,6 @@ public class Paddle extends Rectangle {
         if ((id == 1 && (key == KeyEvent.VK_W || key == KeyEvent.VK_S)) ||
             (id == 2 && (key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN))) {
             setYDirection(0);
-            move();
         }
     }
 }
