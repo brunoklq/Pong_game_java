@@ -74,6 +74,11 @@ public class Paddle extends Rectangle {
     
 	}
     
+    //Returns the vertical center Y position of the paddle.
+    public double getCenterY() {
+        return y + height / 2;
+    }
+    
 
     // Handles keyboard input for paddle movement
     public void keyPressed(KeyEvent e) {
