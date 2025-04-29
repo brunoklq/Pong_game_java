@@ -62,16 +62,15 @@ public class Paddle extends Rectangle {
     public void setYDirection(int yDirection) {
         yVelocity = yDirection;
     }
-
-    // Updates paddle position and restricts movement within screen bounds
+    
+ // Updates paddle position and restricts movement within screen bounds
     public void move() {
         y += yVelocity;
 
         // Prevent paddle from moving off-screen vertically
         if (y < 0) {
             y = 0;
-        }
-        if (y > GamePanel.GAME_HEIGHT - height) {
+        } else if (y > (GamePanel.GAME_HEIGHT - height)) {
             y = GamePanel.GAME_HEIGHT - height;
         }
     }
