@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel2 extends JPanel implements Runnable {
 
 	// attributes for GamePanel
 	
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	Paddle paddle1;
 	Paddle paddle2;
-	//Paddle paddle1_middle;
+	Paddle paddle1_middle;
 	
 	Cpu cpu;
 	
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
 	private BufferedImage backgroundImage;
 	
 
-	GamePanel() throws IOException{ // constructor for gamePane
+	GamePanel2() throws IOException{ // constructor for gamePane
 
 		try {
 			
@@ -100,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public void newPaddles() { // method to get a new paddle with ther attributes
 		paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-		//paddle1_middle = new Paddle(45, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+		paddle1_middle = new Paddle(100, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
 		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 		
 		cpu = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
@@ -110,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
 		paddle1.draw(g);
-		//paddle1_middle.draw(g);
+		paddle1_middle.draw(g);
 		cpu.draw(g); //method call for whenever the cpu is used
 		ball.draw(g);
 		score.draw(g);
@@ -120,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable {
 		if(State == STATE.GAME) {//Main menu Code
 		paddle1.move();
 		paddle2.move();
-		//paddle1_middle.move();
+		paddle1_middle.move();
 		
 		ball.move();
 		
@@ -241,13 +241,13 @@ public void checkCollision() { // the complex checkcollision method
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
 			paddle2.keyPressed(e);
-			//paddle1_middle.keyPressed(e);
+			paddle1_middle.keyPressed(e);
 		}
 
 		public void keyReleased(KeyEvent e) {// method to read the event to get keyboard values
 			paddle1.keyReleased(e);
 			paddle2.keyReleased(e);
-			//paddle1_middle.keyPressed(e);
+			paddle1_middle.keyPressed(e);
 		}
 	
 		
