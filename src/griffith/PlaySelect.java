@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class PlaySelect {
 
-	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
+	public Rectangle coopButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
 	public Rectangle cpuButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	public Rectangle complexButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 	
@@ -27,12 +27,12 @@ public class PlaySelect {
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		g.drawString("Play", singleButton.x + 20, singleButton.y +30);
-		g2d.draw(singleButton);
+		g.drawString("Coop", coopButton.x + 20, coopButton.y +30);
+		g2d.draw(coopButton);
 		
-		g.drawString("Help", cpuButton.x + 20, cpuButton.y +30);
+		g.drawString("Single", cpuButton.x + 20, cpuButton.y +30);
 		g2d.draw(cpuButton);
-		g.drawString("Quit", complexButton.x + 20, complexButton.y +30);
+		g.drawString("Complex", complexButton.x + 20, complexButton.y +30);
 		g2d.draw(complexButton);
 		
 }

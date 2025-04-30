@@ -30,10 +30,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 	private MainMenu mainmenu = new MainMenu();
 	
+	private PlaySelect playselect = new PlaySelect(); 
 	
 	public static enum STATE{ //Implementing Main Menu
 		MENU,
-		GAME
+		GAME,
+		SELECT
 	};
 	
 	public static STATE State = STATE.MENU;
@@ -139,6 +141,9 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		else if(State == STATE.MENU) {
 		mainmenu.render(g);
+		}
+		else if(State == STATE.SELECT) {
+			playselect.render(g);
 		}
 
 	}
