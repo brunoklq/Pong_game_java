@@ -41,8 +41,15 @@ public class MouseInput implements MouseListener{
 		{
 			if(my >= 250 && my <= 300) 
 			{
-				GamePanel2.State = GamePanel2.STATE.GAME;
+				if(GamePanel.State == GamePanel.STATE.SELECT)
+				{
+					GamePanel.State = GamePanel.STATE.GAME2;	
+					System.out.println("Single Player");
+				}
+				else
+				{
 				System.out.println("Help");
+				}
 			}
 		}
 				

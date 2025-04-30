@@ -28,15 +28,6 @@ public class GamePanel2 extends JPanel implements Runnable {
 
 	static final int PADDLE_HEIGHT = 100;
 
-	private MainMenu mainmenu = new MainMenu();
-	
-	
-	public static enum STATE{ //Implementing Main Menu
-		MENU,
-		GAME
-	};
-	
-	public static STATE State = STATE.MENU;
 
 	
 	// attributes inherited for GamePanel
@@ -121,7 +112,6 @@ public class GamePanel2 extends JPanel implements Runnable {
 		Toolkit.getDefaultToolkit().sync();
 	}
 	public void move() { // method to move the paddle and ball
-		if(State == STATE.GAME) {//Main menu Code
 		paddle1.move();
 		paddle2.move();
 		paddle1_middle.move();
@@ -131,10 +121,9 @@ public class GamePanel2 extends JPanel implements Runnable {
 		paddle2_cpu.autoMove(ball);
 		cpu.autoMove(ball);
 	} 
-	}
+	
 	public void paint(Graphics g) { //method to paint and create image
 
-		if(State == STATE.GAME) {//Main menu Code
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
 		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
@@ -142,11 +131,7 @@ public class GamePanel2 extends JPanel implements Runnable {
 		
 		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 		}
-		else if(State == STATE.MENU) {
-		mainmenu.render(g);
-		}
-
-	}
+	
 public void checkCollision() { // the complex checkcollision method
 		
 		//bounce ball off top & bottom window edges
