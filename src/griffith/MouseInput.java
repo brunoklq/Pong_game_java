@@ -28,7 +28,7 @@ public class MouseInput implements MouseListener{
 					GamePanel.State = GamePanel.STATE.GAME;	
 					System.out.println("Single Player");
 				}
-				else 
+				else if(GamePanel.State == GamePanel.STATE.MENU)
 				{
 				GamePanel.State = GamePanel.STATE.SELECT;	
 				System.out.println("Select the gamemode");
@@ -46,7 +46,7 @@ public class MouseInput implements MouseListener{
 					GamePanel.State = GamePanel.STATE.GAME2;	
 					System.out.println("Single Player");
 				}
-				else
+				else if(GamePanel.State == GamePanel.STATE.MENU)
 				{
 				System.out.println("Help");
 				}
@@ -58,9 +58,12 @@ public class MouseInput implements MouseListener{
 		{
 			if(my >= 350 && my <= 400) 
 			{
-				GamePanel.State = GamePanel.STATE.GAME;
-				System.out.println("Goodbye!!");
-				System.exit(1);
+				if(GamePanel.State == GamePanel.STATE.MENU)
+				{
+					GamePanel.State = GamePanel.STATE.GAME;
+					System.out.println("Goodbye!!");
+					System.exit(1);
+				}
 			}
 		}
 	}
