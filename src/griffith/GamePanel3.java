@@ -165,13 +165,13 @@ public class GamePanel3 extends JPanel implements Runnable {
 
     // Key adapter for keyboard input
     public class AL extends KeyAdapter {
-        @Override
+
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
         }
 
-        @Override
+
         public void keyReleased(KeyEvent e) {
             paddle1.keyReleased(e);
             paddle2.keyReleased(e);
