@@ -72,6 +72,7 @@ public class PongGame extends MouseInput {
                                 frame.add(gamePanel4);
                                 frame.revalidate();
                                 frame.repaint();
+                                gamePanel4.requestFocus();
                             });
                         } catch (IOException e) {
                             e.printStackTrace();
