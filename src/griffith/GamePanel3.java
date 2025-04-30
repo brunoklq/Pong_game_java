@@ -38,7 +38,7 @@ public class GamePanel3 extends JPanel implements Runnable {
     // Constructor
     public GamePanel3() throws IOException {
         try {
-            backgroundImage = ImageIO.read(new File("src/griffith/image_campo.png"));
+            backgroundImage = ImageIO.read(new File("src/griffith/image_campo3.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
