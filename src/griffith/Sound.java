@@ -22,6 +22,7 @@ public class Sound {
 		soundURL[5] = getClass().getResource("/sound/cpusong.wav");//cpu song
 		soundURL[6] = getClass().getResource("/sound/DTsong.wav"); //double trouble song
 		soundURL[7] = getClass().getResource("/sound/pvp.wav"); //pvp song
+		soundURL[8] = getClass().getResource("/sound/DTPVP.wav");// DT PVP song
 		
 	}
 	
