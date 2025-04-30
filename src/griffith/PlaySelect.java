@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 
 public class PlaySelect {
 
-	public Rectangle coopButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
-	public Rectangle cpuButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
-	public Rectangle complexButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
+	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
+	public Rectangle complexButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
+	public Rectangle coopButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -23,17 +23,17 @@ public class PlaySelect {
 		Font fnt0 = new Font("arial", Font.BOLD, 50);
 		g.setFont(fnt0);
 		g.setColor(Color.white);
-		g.drawString("Select Game Mode", GamePanel.GAME_WIDTH / 3 + 85 , 100);
+		g.drawString("Select Game Mode", GamePanel.GAME_WIDTH / 4+30 , 100);
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		g.drawString("Coop", coopButton.x + 20, coopButton.y +30);
-		g2d.draw(coopButton);
+		g.drawString("Single", singleButton.x + 20, singleButton.y +30);
+		g2d.draw(singleButton);
 		
-		g.drawString("Single", cpuButton.x + 20, cpuButton.y +30);
-		g2d.draw(cpuButton);
 		g.drawString("Complex", complexButton.x + 20, complexButton.y +30);
 		g2d.draw(complexButton);
+		g.drawString("Coop", coopButton.x + 20, coopButton.y +30);
+		g2d.draw(coopButton);
 		
 }
 }
