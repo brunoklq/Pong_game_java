@@ -45,22 +45,24 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	// attributes inherited for GamePanel
 	Thread gameThread;
-
+	Random random;
+	
 	Image image;
 
 	Graphics graphics;
 
-	Random random;
 
 	Paddle paddle1;
 	Paddle paddle2;
 	//Paddle paddle1_middle;
 	
 	Cpu cpu;
+	Cpu cpu2;
 	
 	Ball ball;
 	Score score;
 	private BufferedImage backgroundImage;
+	
 	
 
 	GamePanel() throws IOException{ // constructor for gamePane
@@ -85,13 +87,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 		this.setFocusable(true);
 		this.addKeyListener(new AL());
+		this.addMouseListener(new MouseInput());
 		this.setPreferredSize(SCREEN_SIZE);
 
 
 		gameThread = new Thread(this);
-
 		gameThread.start();
-		this.addMouseListener(new MouseInput());
 	}
 	
 	
@@ -108,8 +109,9 @@ public class GamePanel extends JPanel implements Runnable {
 		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
 		
 		cpu = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
-		
 		cpu.disableControl(); 
+		cpu2 = new Cpu(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT, 2);
+		cpu2.disableControl();
 		
 	}
 	public void draw(Graphics g) { // method again to draw a graphic
@@ -127,141 +129,102 @@ public class GamePanel extends JPanel implements Runnable {
 		//paddle1_middle.move();
 		
 		ball.move();
-		
 		cpu.autoMove(ball);
 	} 
 	}
-	public void paint(Graphics g) {
-	    switch(State) {
-	        case GAME:
-	            image = createImage(getWidth(), getHeight());
-	            graphics = image.getGraphics();
-	            graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
-	            draw(graphics);
-	            g.drawImage(image, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
-	            break;
-
-	        case MENU:
-	            mainmenu.render(g);
-	            break;
-
-	        case SELECT:
-	            playselect.render(g);
-	            break;
-
-	        case GAME2:
-	            // Switch to the second game
-	            // You'll need to handle this in the run loop or invoke later
-	            launchGame2();
-	            break;
-
-	        case GAME3:
-	            // Same pattern
-	            break;
-	    }
-	}
-	private void launchGame2() {
-	    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-	    topFrame.getContentPane().removeAll();
-	    topFrame.getContentPane().add(new GamePanel2());
-	    topFrame.revalidate();
-	    topFrame.repaint();
-	}
+    public void paint(Graphics g) {
+        if (State == STATE.GAME || State == STATE.GAME2) {
+            image = createImage(getWidth(), getHeight());
+            graphics = image.getGraphics();
+            graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+            draw(graphics);
+            g.drawImage(image, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+        } else if (State == STATE.MENU) {
+            mainmenu.render(g);
+        } else if (State == STATE.SELECT) {
+            playselect.render(g);
+        }
+    }
+	
+	
 	public void checkCollision() { // the complex checkcollision method
 		
-		//bounce ball off top & bottom window edges
-		if(ball.y <=0) {
-			ball.setYDirection(-ball.yVelocity);
-		}
-		if(ball.y >= GAME_HEIGHT-BALL_DIAMETER) {
-			ball.setYDirection(-ball.yVelocity);
-		}
-		//bounce ball off paddles
-		if(ball.intersects(paddle1)) {
-			ball.xVelocity = Math.abs(ball.xVelocity);
-			ball.xVelocity++; //optional for more difficulty
-			if(ball.yVelocity>0)
-				ball.yVelocity++; //optional for more difficulty
-			else
-				ball.yVelocity--;
-			ball.setXDirection(ball.xVelocity);
-			ball.setYDirection(ball.yVelocity);
-		}
-		/*if(ball.intersects(paddle2)) {
-			ball.xVelocity = Math.abs(ball.xVelocity);
-			ball.xVelocity++; //optional for more difficulty
-			if(ball.yVelocity>0)
-				ball.yVelocity++; //optional for more difficulty
-			else
-				ball.yVelocity--;
-			ball.setXDirection(-ball.xVelocity);
-			ball.setYDirection(ball.yVelocity);
-		}*/
-		
-		if(ball.intersects(cpu)) {     //same method but fpr the cpu
-			ball.xVelocity = Math.abs(ball.xVelocity);
-			ball.xVelocity++; //optional for more difficulty
-			if(ball.yVelocity>0)
-				ball.yVelocity++; //optional for more difficulty
-			else
-				ball.yVelocity--;
-			ball.setXDirection(-ball.xVelocity);
-			ball.setYDirection(ball.yVelocity);
-		}
-		
-		//stops paddles at window edges
-		if(paddle1.y<=0)
-			paddle1.y=0;
-		if(paddle1.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
-			paddle1.y = GAME_HEIGHT-PADDLE_HEIGHT;
-		
-		if(paddle2.y<=0)
-			paddle2.y=0;
-		if(paddle2.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
-			paddle2.y = GAME_HEIGHT-PADDLE_HEIGHT;
-		
-		if(cpu.y<=0)
-			cpu.y=0;
-		if(cpu.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
-			cpu.y = GAME_HEIGHT-PADDLE_HEIGHT;
-		//give a player 1 point and creates new paddles & ball
-		if(ball.x <=0) {
-			score.player_2++;
-			newPaddles();
-			newBall();
-			System.out.println("Player 2: "+score.player_2);
-		}
-		if(ball.x >= GAME_WIDTH-BALL_DIAMETER) {
-			score.player_1++;
-			newPaddles();
-			newBall();
-			System.out.println("Player 1: "+score.player_1);
-		}
-	}
+		if (ball.y <= 0 || ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
+            ball.setYDirection(-ball.yVelocity);
+        }
+
+        if (ball.intersects(paddle1)) {
+            ball.xVelocity = Math.abs(ball.xVelocity);
+            ball.xVelocity++;
+            ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
+            ball.setXDirection(ball.xVelocity);
+        }
+
+        if (ball.intersects(paddle2)) {
+            ball.xVelocity = Math.abs(ball.xVelocity);
+            ball.xVelocity++;
+            ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
+            ball.setXDirection(-ball.xVelocity);
+        }
+
+        if (paddle1.y < 0) paddle1.y = 0;
+        if (paddle1.y > GAME_HEIGHT - PADDLE_HEIGHT) paddle1.y = GAME_HEIGHT - PADDLE_HEIGHT;
+
+        if (paddle2.y < 0) paddle2.y = 0;
+        if (paddle2.y > GAME_HEIGHT - PADDLE_HEIGHT) paddle2.y = GAME_HEIGHT - PADDLE_HEIGHT;
+
+        if (ball.x <= 0) {
+            score.player_2++;
+            newPaddles();
+            newBall();
+        }
+
+        if (ball.x >= GAME_WIDTH - BALL_DIAMETER) {
+            score.player_1++;
+            newPaddles();
+            newBall();
+        }
+    }
 	
 	
 	public void run() { // method to run the game in gamepanel
-		long lastime = System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000/ amountOfTicks;
-		double delta = 0;
-		while(true) {
-			
-			long now = System.nanoTime();
-			delta += ( now - lastime)/ns;
-			lastime = now;
-			if(delta >=1)
-			{
-				cpu.autoMove(ball);
-				move();
-				checkCollision();
-				repaint();
-				delta--;
-			}
-			
-		}
+		long lastTime = System.nanoTime();
+        double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
+
+        while (true) {
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+
+            if (delta >= 1) {
+                switch (State) {
+                    case GAME:
+                        cpu.autoMove(ball);
+                        move();
+                        checkCollision();
+                        repaint();
+                        break;
+
+                    case GAME2:
+                        cpu.autoMove(ball);
+                        cpu2.autoMove(ball); // second AI
+                        move();
+                        checkCollision();
+                        repaint();
+                        break;
+
+                    case MENU:
+                    case SELECT:
+                        repaint();
+                        break;
+                }
+                delta--;
+            }
+        }
+    }
 	
-	}
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
