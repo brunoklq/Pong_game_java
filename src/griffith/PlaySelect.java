@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class PlaySelect {
 
-	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,100 ,50);
+	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,130 ,50);
 	public Rectangle complexButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,100 ,50);
 	public Rectangle coopButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
 	
