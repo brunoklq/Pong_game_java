@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 public class PlaySelect {
 
 	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,128 ,50);
-	public Rectangle dtButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,165 ,50);
-	public Rectangle duoButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,115 ,50);
-	public Rectangle dt2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,450 ,115 ,50);
+	public Rectangle dtButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,260 ,50);
+	public Rectangle duoButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
+	public Rectangle dt2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,450 ,280 ,50);
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

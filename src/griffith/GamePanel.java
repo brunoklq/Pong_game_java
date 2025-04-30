@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
 		GAME,
 		GAME2,
 		GAME3,
+		GAME4
 	};
 	
 	public static STATE State = STATE.MENU;
@@ -242,6 +243,7 @@ public class GamePanel extends JPanel implements Runnable {
                     case GAME:
                     case GAME2:
                     case GAME3:
+                    case GAME4:
                         if (introPlaying) {
                             sound.stop(); // Stop intro music
                             introPlaying = false;
