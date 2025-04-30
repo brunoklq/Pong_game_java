@@ -41,6 +41,7 @@ public class Paddle extends Rectangle {
         controllable = true;
     }
 
+    
     /**
      * Disables user control for the paddle (used for AI or paused state).
      */

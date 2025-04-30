@@ -12,8 +12,9 @@ import javax.swing.JPanel;
 public class PlaySelect {
 
 	public Rectangle singleButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,150 ,128 ,50);
-	public Rectangle complexButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,165 ,50);
-	public Rectangle coopButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,115 ,50);
+	public Rectangle dtButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,250 ,260 ,50);
+	public Rectangle duoButton = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,350 ,100 ,50);
+	public Rectangle dt2Button = new Rectangle(GamePanel.GAME_WIDTH / 3 + 120 ,450 ,280 ,50);
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -30,10 +31,16 @@ public class PlaySelect {
 		g.drawString("Single", singleButton.x + 20, singleButton.y +30);
 		g2d.draw(singleButton);
 		
-		g.drawString("Complex", complexButton.x + 20, complexButton.y +30);
-		g2d.draw(complexButton);
-		g.drawString("Duo", coopButton.x + 20, coopButton.y +30);
-		g2d.draw(coopButton);
+		g.drawString("Double Trouble", dtButton.x + 20, dtButton.y +30);
+		g2d.draw(dtButton);
+		g.drawString("Duo", duoButton.x + 20, duoButton.y +30);
+		g2d.draw(duoButton);
+		g.drawString("Duoble Trouble 2", dt2Button.x + 20, dt2Button.y +30);
+		g2d.draw(dt2Button);
+		
+		
+		
+		
 		
 }
 }
