@@ -1,23 +1,21 @@
 package griffith;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.*;
 import javax.swing.*;
-
-
 
 public class PongGame extends MouseInput {
 
-	public static JFrame frame;
-	public static GamePanel gamePanel;
-	
-	public static void main(String[] args) {
+    public static JFrame frame;
+    public static GamePanel gamePanel;
+
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             frame = new JFrame("Pong");
 
             try {
-                gamePanel = new GamePanel(); 
+                gamePanel = new GamePanel(); // Initialize the first game panel
                 frame.add(gamePanel);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -29,26 +27,29 @@ public class PongGame extends MouseInput {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
 
-        
+            // Start a thread to watch for state change and transition to GamePanel2
             new Thread(() -> {
                 while (true) {
                     if (GamePanel.State == GamePanel.STATE.GAME2) {
                         try {
-                            GamePanel2 gamePanel2 = new GamePanel2();
+                            GamePanel2 gamePanel2 = new GamePanel2(); // Initialize the second game panel
                             SwingUtilities.invokeLater(() -> {
-                                frame.getContentPane().removeAll();
-                                frame.add(gamePanel2);
+                                frame.getContentPane().removeAll(); // Remove the current game panel
+                                frame.add(gamePanel2); // Add the new game panel
                                 frame.revalidate();
                                 frame.repaint();
+
+                                // Ensure GamePanel2 gets focus for key events
+                                gamePanel2.requestFocus();
                             });
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        break; 
+                        break; // Exit the loop after the transition
                     }
 
                     try {
-                        Thread.sleep(100); 
+                        Thread.sleep(100); // Check periodically
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
