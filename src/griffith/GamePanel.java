@@ -32,6 +32,8 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	private PlaySelect playselect = new PlaySelect(); 
 	
+	Sound sound = new Sound();
+	
 	public static enum STATE{ //Implementing Main Menu
 		MENU,
 		SELECT,
@@ -160,12 +162,14 @@ public class GamePanel extends JPanel implements Runnable {
             ball.setXDirection(ball.xVelocity);
         }
 
-        if (ball.intersects(paddle2)) {
+        if (ball.intersects(cpu)) {
             ball.xVelocity = Math.abs(ball.xVelocity);
             ball.xVelocity++;
             ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
             ball.setXDirection(-ball.xVelocity);
         }
+
+
 
         if (paddle1.y < 0) paddle1.y = 0;
         if (paddle1.y > GAME_HEIGHT - PADDLE_HEIGHT) paddle1.y = GAME_HEIGHT - PADDLE_HEIGHT;
