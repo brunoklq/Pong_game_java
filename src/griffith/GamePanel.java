@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 public class GamePanel extends JPanel implements Runnable {
 
 	// attributes for GamePanel
+
 	
 	static final int GAME_WIDTH = 1000;
 
@@ -95,6 +96,14 @@ public class GamePanel extends JPanel implements Runnable {
 
 		gameThread = new Thread(this);
 		gameThread.start();
+		
+		
+
+		sound.setFile(0); // index 5 is the song for this one
+		sound.play();
+		sound.loop(); 
+
+		
 	}
 	
 	
@@ -149,27 +158,47 @@ public class GamePanel extends JPanel implements Runnable {
     }
 	
 	
-	public void checkCollision() { // the complex checkcollision method
-		
-		if (ball.y <= 0 || ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
+    public void checkCollision() { // the complex checkcollision method
+        
+        // Wall Bounce
+        if (ball.y <= 0 || ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
             ball.setYDirection(-ball.yVelocity);
+            sound.setFile(1); // Wall bounce sound
+            sound.play(); // Play the wall bounce sound
         }
 
+        // Paddle Collision (Player 1)
         if (ball.intersects(paddle1)) {
             ball.xVelocity = Math.abs(ball.xVelocity);
             ball.xVelocity++;
             ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
             ball.setXDirection(ball.xVelocity);
+            
+            sound.setFile(3); // Paddle bounce sound for player paddle
+            sound.play(); // Play the paddle bounce sound
         }
 
+        // Paddle Collision (CPU)
         if (ball.intersects(cpu)) {
             ball.xVelocity = Math.abs(ball.xVelocity);
             ball.xVelocity++;
             ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
             ball.setXDirection(-ball.xVelocity);
+            
+            sound.setFile(3); // Paddle bounce sound for CPU paddle
+            sound.play(); // Play the paddle bounce sound
         }
 
-
+       
+        if (ball.intersects(paddle2)) {
+            ball.xVelocity = Math.abs(ball.xVelocity);
+            ball.xVelocity++;
+            ball.yVelocity += ball.yVelocity > 0 ? 1 : -1;
+            ball.setXDirection(-ball.xVelocity);
+            
+            sound.setFile(4); // Another paddle bounce sound if needed
+            sound.play(); // Play the paddle bounce sound
+        }
 
         if (paddle1.y < 0) paddle1.y = 0;
         if (paddle1.y > GAME_HEIGHT - PADDLE_HEIGHT) paddle1.y = GAME_HEIGHT - PADDLE_HEIGHT;
@@ -189,31 +218,44 @@ public class GamePanel extends JPanel implements Runnable {
             newBall();
         }
     }
-	
+
 	
 	public void run() { // method to run the game in gamepanel
 		long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
+        
+
+        boolean introPlaying = true;
+        
 
         while (true) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
+            boolean cpuMusicPlaying = false;
+
 
             if (delta >= 1) {
                 switch (State) {
                     case GAME:
-                        cpu.autoMove(ball);
-                        move();
-                        checkCollision();
-                        repaint();
-                        break;
-
                     case GAME2:
+                    case GAME3:
+                        if (introPlaying) {
+                            sound.stop(); // Stop intro music
+                            introPlaying = false;
+                            
+                            if (State == STATE.GAME && !cpuMusicPlaying) {
+                                sound.stop(); // Stop any other music playing
+                                sound.setFile(5); // Set the CPU song
+                                sound.play();
+                                sound.loop(); // Loop the CPU song
+                                cpuMusicPlaying = true;
+                            }
+                        }
                         cpu.autoMove(ball);
-                        cpu2.autoMove(ball); // second AI
+                        if (State == STATE.GAME2) cpu2.autoMove(ball);
                         move();
                         checkCollision();
                         repaint();
@@ -227,6 +269,7 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
         }
+
     }
 	
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values

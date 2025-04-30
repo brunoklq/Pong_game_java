@@ -30,6 +30,9 @@ public class GamePanel3 extends JPanel implements Runnable {
 
 	private MainMenu mainmenu = new MainMenu();
 	
+	private Sound sound;
+    private boolean soundStarted = false;
+	
 	
 	public static enum STATE{ //Implementing Main Menu
 		MENU,
@@ -200,28 +203,34 @@ public void checkCollision() { // the complex checkcollision method
 	}
 	
 	
-	public void run() { // method to run the game in gamepanel
-		long lastime = System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000/ amountOfTicks;
-		double delta = 0;
-		while(true) {
-			
-			long now = System.nanoTime();
-			delta += ( now - lastime)/ns;
-			lastime = now;
-			if(delta >=1)
-			{
-				
-				move();
-				checkCollision();
-				repaint();
-				delta--;
-			}
-			
+		public void run() { // method to run the game in gamepanel
+		    long lastTime = System.nanoTime();
+		    double amountOfTicks = 60.0;
+		    double ns = 1000000000 / amountOfTicks;
+		    double delta = 0;
+		
+		    while (true) {
+		        long now = System.nanoTime();
+		        delta += (now - lastTime) / ns;
+		        lastTime = now;
+		        if (delta >= 1) {
+		            if (State == STATE.GAME) {
+		                if (!soundStarted) {
+		                    // Load the pvp sound and play it in a loop
+		                    sound.setFile(7); // Index 7 for pvp.wav
+		                    sound.loop();
+		                    soundStarted = true;
+		                }
+		                move();
+		                checkCollision();
+		                repaint();
+		            } else {
+		                repaint();
+		            }
+		            delta--;
+		        }
+		    }
 		}
-	
-	}
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);

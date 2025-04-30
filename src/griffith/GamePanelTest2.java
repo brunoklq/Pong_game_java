@@ -38,6 +38,7 @@ public class GamePanelTest2 {
 
         // Check that xVelocity is now positive and greater than before
         assertEquals(-(Math.abs(originalXVelocity) + 1), ball.xVelocity, "Ball xVelocity should be inverted and increased");
+       
         // Check that yVelocity changed appropriately
         assertEquals(originalYVelocity + 1, ball.yVelocity, "Ball yVelocity should increase if it was moving down");
     }

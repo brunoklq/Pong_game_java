@@ -6,135 +6,108 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-
+import javax.sound.sampled.Clip;
 
 public class GamePanel2 extends JPanel implements Runnable {
 
-	// attributes for GamePanel
-	
-	static final int GAME_WIDTH = 1000;
+    // attributes for GamePanel
+    static final int GAME_WIDTH = 1000;
+    static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
+    static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGHT);
+    static final int BALL_DIAMETER = 20;
+    static final int PADDLE_WIDTH = 25;
+    static final int PADDLE_HEIGHT = 100;
 
-	static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
+    // attributes inherited for GamePanel
+    Thread gameThread;
+    Image image;
+    Graphics graphics;
+    Random random;
+    Paddle paddle1;
+    Paddle paddle2;
+    Paddle paddle1_middle;
+    Cpu paddle2_cpu;
+    Cpu cpu;
+    Ball ball;
+    Score score;
+    private BufferedImage backgroundImage;
 
-	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);
+    // Sound instance
+    private Sound sound;
+    private boolean soundStarted = false;
 
-	static final int BALL_DIAMETER = 20;
+    GamePanel2() throws IOException{ // constructor for gamePane
 
-	static final int PADDLE_WIDTH = 25;
+        try {
+            backgroundImage = ImageIO.read(new File("src/griffith/image_campo2.png")); // the background image drawing behind the set of paddles
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 
-	static final int PADDLE_HEIGHT = 100;
+        newPaddles();
+        newBall();
+        score = new Score(GAME_WIDTH, GAME_HEIGHT);
 
+        this.setFocusable(true);
+        this.addKeyListener(new AL());
+        this.requestFocus();
+        this.setPreferredSize(SCREEN_SIZE);
 
-	
-	// attributes inherited for GamePanel
-	Thread gameThread;
+        gameThread = new Thread(this);
+        gameThread.start();
+        this.addMouseListener(new MouseInput());
 
-	Image image;
+        // Initialize sound object
+        sound = new Sound();
+    }
 
-	Graphics graphics;
+    public void newBall() { // method to get a new ball with their attributes
+        random = new Random();
+        ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2), random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER, BALL_DIAMETER);
+    }
 
-	Random random;
+    public void newPaddles() {
+        paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+        paddle1_middle = new Paddle(100, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+        paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
+        cpu = new Cpu(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
+        paddle2_cpu = new Cpu(800, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
 
-	Paddle paddle1;
-	Paddle paddle2;
-	Paddle paddle1_middle;
-	Cpu paddle2_cpu;
-	
-	Cpu cpu;
-	
-	Ball ball;
-	Score score;
-	private BufferedImage backgroundImage;
-	
+        cpu.disableControl();
+        paddle2_cpu.disableControl();
+        paddle1.enableControl();
+        paddle1_middle.enableControl();
+    }
 
-	GamePanel2() throws IOException{ // constructor for gamePane
+    public void draw(Graphics g) { // method again to draw a graphic
+        paddle1.draw(g);
+        paddle1_middle.draw(g);
+        cpu.draw(g);
+        paddle2_cpu.draw(g); // method call for whenever the cpu is used
+        ball.draw(g);
+        score.draw(g);
+        Toolkit.getDefaultToolkit().sync();
+    }
 
-		try {
-			
-			backgroundImage = ImageIO.read(new File("src/griffith/image_campo2.png")); // the background image drawing behind the set of paddles
-			
-			
-		} 
-		
-		catch(IOException e) {
-	        e.printStackTrace();
-		}
+    public void move() { // method to move the paddle and ball
+        paddle1.move();
+        paddle1_middle.move();
+        ball.move();
+        paddle2_cpu.autoMove(ball);
+        cpu.autoMove(ball);
+    }
 
-		newPaddles();
-		newBall();
-		
-		
-	
-		score = new Score(GAME_WIDTH,GAME_HEIGHT);
+    public void paint(Graphics g) { // method to paint and create image
+        image = createImage(getWidth(), getHeight());
+        graphics = image.getGraphics();
+        graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+        draw(graphics);
+        g.drawImage(image, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+    }
 
-		this.setFocusable(true);
-		this.addKeyListener(new AL());
-		this.requestFocus();
-		this.setPreferredSize(SCREEN_SIZE);
-
-
-		gameThread = new Thread(this);
-
-		gameThread.start();
-		this.addMouseListener(new MouseInput());
-	}
-	
-	
-	
-	public void newBall() { // method to get a new ball with ther attributes
-
-		random = new Random();
-		ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER,BALL_DIAMETER);
-
-	}
-	public void newPaddles() {
-	    paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-	    paddle1_middle = new Paddle(100, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-	    paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
-
-	    cpu = new Cpu(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
-	    paddle2_cpu = new Cpu(800, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
-
-	    cpu.disableControl();
-	    paddle2_cpu.disableControl();
-
-	    paddle1.enableControl();
-	    paddle1_middle.enableControl();
-	}
-	public void draw(Graphics g) { // method again to draw a graphic
-		paddle1.draw(g);
-		paddle1_middle.draw(g);
-		cpu.draw(g);
-		paddle2_cpu.draw(g);//method call for whenever the cpu is used
-		ball.draw(g);
-		score.draw(g);
-		Toolkit.getDefaultToolkit().sync();
-	}
-	public void move() { // method to move the paddle and ball
-		paddle1.move();
-		paddle1_middle.move();
-	
-		
-		ball.move();
-		paddle2_cpu.autoMove(ball);
-		cpu.autoMove(ball);
-	} 
-	
-	public void paint(Graphics g) { //method to paint and create image
-
-		image = createImage(getWidth(),getHeight());
-		graphics = image.getGraphics();
-		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-		draw(graphics);
-		
-		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-		}
-	
-	public void checkCollision() {
+    public void checkCollision() {
         // Bounce ball off top and bottom
         if (ball.y <= 0 || ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
             ball.setYDirection(-ball.yVelocity);
@@ -205,45 +178,41 @@ public class GamePanel2 extends JPanel implements Runnable {
             System.out.println("Player 1: " + score.player_1);
         }
     }
-	
-	
-	public void run() { // method to run the game in gamepanel
-		long lastime = System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000/ amountOfTicks;
-		double delta = 0;
-		while(true) {
-			
-			long now = System.nanoTime();
-			delta += ( now - lastime)/ns;
-			lastime = now;
-			if(delta >=1)
-			{
-				move();
-				checkCollision();
-				repaint();
-				delta--;
-			}
-			
-		}
-	
-	}
-	public class AL extends KeyAdapter { // method to read the event to get keyboard values
-		public void keyPressed(KeyEvent e) {
-			paddle1.keyPressed(e);
-			paddle1_middle.keyPressed(e);
-		}
 
-		public void keyReleased(KeyEvent e) {// method to read the event to get keyboard values
-			paddle1.keyReleased(e);
-			paddle1_middle.keyReleased(e);
-		}
-	
-		
-	
-	
-	}
+    public void run() { // method to run the game in gamepanel
+        long lastime = System.nanoTime();
+        double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
 
-	
-	
+        while (true) {
+            long now = System.nanoTime();
+            delta += (now - lastime) / ns;
+            lastime = now;
+            if (delta >= 1) {
+                if (!soundStarted) {
+                    // Load the DTsong and play it in a loop
+                    sound.setFile(6); // Index 6 for DTsong
+                    sound.loop();
+                    soundStarted = true;
+                }
+                move();
+                checkCollision();
+                repaint();
+                delta--;
+            }
+        }
+    }
+
+    public class AL extends KeyAdapter { // method to read the event to get keyboard values
+        public void keyPressed(KeyEvent e) {
+            paddle1.keyPressed(e);
+            paddle1_middle.keyPressed(e);
+        }
+
+        public void keyReleased(KeyEvent e) { // method to read the event to get keyboard values
+            paddle1.keyReleased(e);
+            paddle1_middle.keyReleased(e);
+        }
+    }
 }
