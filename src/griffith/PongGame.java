@@ -47,6 +47,21 @@ public class PongGame extends MouseInput {
                         }
                         break; // Exit the loop after the transition
                     }
+                    
+                    if (GamePanel.State == GamePanel.STATE.GAME3) {
+                        try {
+                            GamePanel3 gamePanel3 = new GamePanel3();
+                            SwingUtilities.invokeLater(() -> {
+                                frame.getContentPane().removeAll();
+                                frame.add(gamePanel3);
+                                frame.revalidate();
+                                frame.repaint();
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
 
                     try {
                         Thread.sleep(100); // Check periodically

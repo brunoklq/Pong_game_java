@@ -33,13 +33,6 @@ public class GamePanel3 extends JPanel implements Runnable {
 	private Sound sound;
     private boolean soundStarted = false;
 	
-	
-	public static enum STATE{ //Implementing Main Menu
-		MENU,
-		GAME
-	};
-	
-	public static STATE State = STATE.MENU;
 
 	
 	// attributes inherited for GamePanel
@@ -116,19 +109,16 @@ public class GamePanel3 extends JPanel implements Runnable {
 		Toolkit.getDefaultToolkit().sync();
 	}
 	public void move() { // method to move the paddle and ball
-		if(State == STATE.GAME) {//Main menu Code
 		paddle1.move();
 		paddle2.move();
 		
 		
 		ball.move();
 		
-		
-	} 
 	}
 	public void paint(Graphics g) { //method to paint and create image
 
-		if(State == STATE.GAME) {//Main menu Code
+
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
 		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
@@ -136,11 +126,7 @@ public class GamePanel3 extends JPanel implements Runnable {
 		
 		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
 		}
-		else if(State == STATE.MENU) {
-		mainmenu.render(g);
-		}
 
-	}
 public void checkCollision() { // the complex checkcollision method
 		
 		//bounce ball off top & bottom window edges
@@ -203,34 +189,32 @@ public void checkCollision() { // the complex checkcollision method
 	}
 	
 	
-		public void run() { // method to run the game in gamepanel
-		    long lastTime = System.nanoTime();
-		    double amountOfTicks = 60.0;
-		    double ns = 1000000000 / amountOfTicks;
-		    double delta = 0;
+public void run() { // method to run the game in gamepanel
+    long lastime = System.nanoTime();
+    double amountOfTicks = 60.0;
+    double ns = 1000000000 / amountOfTicks;
+    double delta = 0;
+
+    while (true) {
+        long now = System.nanoTime();
+        delta += (now - lastime) / ns;
+        lastime = now;
+        if (delta >= 1) {
+            if (!soundStarted) {
+                // Load the DTsong and play it in a loop
+                sound.setFile(6); // Index 6 for DTsong
+                sound.loop();
+                soundStarted = true;
+            }
+            move();
+            checkCollision();
+            repaint();
+            delta--;
+        }
+    }
+}
 		
-		    while (true) {
-		        long now = System.nanoTime();
-		        delta += (now - lastTime) / ns;
-		        lastTime = now;
-		        if (delta >= 1) {
-		            if (State == STATE.GAME) {
-		                if (!soundStarted) {
-		                    // Load the pvp sound and play it in a loop
-		                    sound.setFile(7); // Index 7 for pvp.wav
-		                    sound.loop();
-		                    soundStarted = true;
-		                }
-		                move();
-		                checkCollision();
-		                repaint();
-		            } else {
-		                repaint();
-		            }
-		            delta--;
-		        }
-		    }
-		}
+		
 	public class AL extends KeyAdapter { // method to read the event to get keyboard values
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
