@@ -51,6 +51,7 @@ public class GamePanel3 extends JPanel implements Runnable {
 
         this.setFocusable(true);
         this.addKeyListener(new AL());
+        this.requestFocusInWindow();
         this.setPreferredSize(SCREEN_SIZE);
         this.addMouseListener(new MouseInput());
 
@@ -68,6 +69,9 @@ public class GamePanel3 extends JPanel implements Runnable {
         paddle1 = new Paddle(0, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
         paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2),
                 PADDLE_WIDTH, PADDLE_HEIGHT, 2);
+        
+        paddle1.enableControl();
+        paddle2.enableControl();
     }
 
     public void draw(Graphics g) {
