@@ -190,7 +190,7 @@ public class GamePanel4 extends JPanel implements Runnable {
             if (delta >= 1) {
                 if (!soundStarted) {
                     // Load the DTsong and play it in a loop
-                    sound.setFile(7); // Index 6 for DTsong
+                    sound.setFile(8); // Index 6 for DTsong
                     sound.loop();
                     soundStarted = true;
                 }
