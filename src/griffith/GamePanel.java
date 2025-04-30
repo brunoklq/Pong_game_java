@@ -34,8 +34,10 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public static enum STATE{ //Implementing Main Menu
 		MENU,
+		SELECT,
 		GAME,
-		SELECT
+		GAME2,
+		GAME3,
 	};
 	
 	public static STATE State = STATE.MENU;
@@ -129,23 +131,41 @@ public class GamePanel extends JPanel implements Runnable {
 		cpu.autoMove(ball);
 	} 
 	}
-	public void paint(Graphics g) { //method to paint and create image
+	public void paint(Graphics g) {
+	    switch(State) {
+	        case GAME:
+	            image = createImage(getWidth(), getHeight());
+	            graphics = image.getGraphics();
+	            graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+	            draw(graphics);
+	            g.drawImage(image, 0, 0, GAME_WIDTH, GAME_HEIGHT, this);
+	            break;
 
-		if(State == STATE.GAME) {//Main menu Code
-		image = createImage(getWidth(),getHeight());
-		graphics = image.getGraphics();
-		graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-		draw(graphics);
-		
-		g.drawImage(image,0,0,GAME_WIDTH, GAME_HEIGHT, this);
-		}
-		else if(State == STATE.MENU) {
-		mainmenu.render(g);
-		}
-		else if(State == STATE.SELECT) {
-			playselect.render(g);
-		}
+	        case MENU:
+	            mainmenu.render(g);
+	            break;
 
+	        case SELECT:
+	            playselect.render(g);
+	            break;
+
+	        case GAME2:
+	            // Switch to the second game
+	            // You'll need to handle this in the run loop or invoke later
+	            launchGame2();
+	            break;
+
+	        case GAME3:
+	            // Same pattern
+	            break;
+	    }
+	}
+	private void launchGame2() {
+	    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+	    topFrame.getContentPane().removeAll();
+	    topFrame.getContentPane().add(new GamePanel2());
+	    topFrame.revalidate();
+	    topFrame.repaint();
 	}
 	public void checkCollision() { // the complex checkcollision method
 		
