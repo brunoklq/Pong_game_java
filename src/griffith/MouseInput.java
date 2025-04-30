@@ -78,7 +78,7 @@ public class MouseInput implements MouseListener{
 			{
 				if(GamePanel.State == GamePanel.STATE.SELECT)
 				{
-					GamePanel.State = GamePanel.STATE.GAME3;	
+					GamePanel.State = GamePanel.STATE.GAME4;	
 					System.out.println("Duoble Trouble 2");
 				}
 				

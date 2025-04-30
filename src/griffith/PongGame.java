@@ -56,6 +56,7 @@ public class PongGame extends MouseInput {
                                 frame.add(gamePanel3);
                                 frame.revalidate();
                                 frame.repaint();
+                                gamePanel3.requestFocus();
                             });
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -65,10 +66,10 @@ public class PongGame extends MouseInput {
                     
                     if (GamePanel.State == GamePanel.STATE.GAME4) {
                         try {
-                            GamePanel3 gamePanel3 = new GamePanel3();
+                            GamePanel4 gamePanel4 = new GamePanel4();
                             SwingUtilities.invokeLater(() -> {
                                 frame.getContentPane().removeAll();
-                                frame.add(gamePanel3);
+                                frame.add(gamePanel4);
                                 frame.revalidate();
                                 frame.repaint();
                             });
