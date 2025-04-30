@@ -32,7 +32,7 @@ public class PlaySelect {
 		
 		g.drawString("Complex", complexButton.x + 20, complexButton.y +30);
 		g2d.draw(complexButton);
-		g.drawString("Coop", coopButton.x + 20, coopButton.y +30);
+		g.drawString("Duo", coopButton.x + 20, coopButton.y +30);
 		g2d.draw(coopButton);
 		
 }

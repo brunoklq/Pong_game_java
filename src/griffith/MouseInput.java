@@ -44,7 +44,7 @@ public class MouseInput implements MouseListener{
 				if(GamePanel.State == GamePanel.STATE.SELECT)
 				{
 					GamePanel.State = GamePanel.STATE.GAME2;	
-					System.out.println("Single Player");
+					System.out.println("Single Player Complex");
 				}
 				else if(GamePanel.State == GamePanel.STATE.MENU)
 				{
@@ -58,12 +58,18 @@ public class MouseInput implements MouseListener{
 		{
 			if(my >= 350 && my <= 400) 
 			{
-				if(GamePanel.State == GamePanel.STATE.MENU)
+				if(GamePanel.State == GamePanel.STATE.SELECT)
+				{
+					GamePanel.State = GamePanel.STATE.GAME3;	
+					System.out.println("Duo");
+				}
+				else if(GamePanel.State == GamePanel.STATE.MENU)
 				{
 					GamePanel.State = GamePanel.STATE.GAME;
 					System.out.println("Goodbye!!");
 					System.exit(1);
 				}
+				
 			}
 		}
 	}
